@@ -1,0 +1,43 @@
+---
+// Root entry: detect the visitor's browser language and redirect to the best
+// matching locale, defaulting to English. Uses a meta refresh + script so it
+// works on static GitHub Pages hosting.
+import { locales, defaultLocale } from '../i18n/config';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const fallback = `${base}/${defaultLocale}`;
+const localesJson = JSON.stringify(locales);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sanatan Dharma</title>
+    <link rel="canonical" href={fallback} />
+    <meta http-equiv="refresh" content={`0; url=${fallback}`} />
+    <script is:inline define:vars={{ base, fallback, localesJson }}>
+      (function () {
+        try {
+          var supported = JSON.parse(localesJson);
+          var langs = navigator.languages || [navigator.language || 'en'];
+          var pick = null;
+          for (var i = 0; i < langs.length && !pick; i++) {
+            var code = (langs[i] || '').toLowerCase().split('-')[0];
+            if (supported.indexOf(code) !== -1) pick = code;
+          }
+          var target = pick ? base + '/' + pick : fallback;
+          window.location.replace(target);
+        } catch (e) {
+          window.location.replace(fallback);
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <p style="font-family: sans-serif; padding: 2rem; color: #333;">
+      Redirecting… <a href={fallback}>Enter Sanatan Dharma</a>
+    </p>
+  </body>
+</html>

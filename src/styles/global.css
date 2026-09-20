@@ -1,0 +1,103 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --accent: #a13d27;
+    --ink: #211a13;
+    --paper: #f6efe0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    @apply bg-paper text-ink font-sans antialiased;
+    overflow-x: hidden;
+  }
+
+  /* RTL support (Arabic) */
+  [dir='rtl'] body {
+    direction: rtl;
+  }
+
+  ::selection {
+    background: rgba(161, 61, 39, 0.16);
+    color: #211a13;
+  }
+
+  /* Quiet scrollbar that matches the paper theme */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #efe6d1;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #cbb994;
+    border-radius: 8px;
+  }
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
+  }
+
+  .heading-serif {
+    @apply font-display tracking-tight;
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-accent-500;
+  }
+
+  .eyebrow::before {
+    content: '';
+    @apply block h-px w-6 bg-accent-500/60;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full
+           bg-ink px-7 py-3 font-semibold text-paper-white shadow-card
+           transition-all duration-300 hover:bg-accent-600 hover:shadow-card-lg;
+  }
+
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border
+           border-ink/20 px-7 py-3 font-medium text-ink
+           transition-all duration-300 hover:border-accent-500 hover:text-accent-600;
+  }
+
+  .card-sacred {
+    @apply relative overflow-hidden rounded-2xl border border-ink/10
+           bg-paper-white p-6 shadow-card transition-all duration-500
+           hover:-translate-y-0.5 hover:shadow-card-lg;
+  }
+
+  .glass {
+    @apply border border-ink/10 bg-paper-white/70 backdrop-blur-md;
+  }
+}
+
+/* Reduced motion respect */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Subtle paper grain backdrop utility */
+.bg-manuscript {
+  background-color: theme('colors.paper.DEFAULT');
+  background-image: theme('backgroundImage.paper-grain');
+}

@@ -1,0 +1,18 @@
+---
+// Vishwa Sanatan Sansthanam emblem.
+//
+// By default this uses the recreated scalable SVG at
+// /static/vss-logo.svg. If you drop a real logo file into
+// public/static/ named  vss-logo.png  (transparent background recommended),
+// change LOGO_FILE below to 'vss-logo.png' and it will be used everywhere.
+interface Props {
+  class?: string;
+  alt?: string;
+}
+const { class: className, alt = 'Vishwa Sanatan Sansthanam' } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const LOGO_FILE = 'vss-logo.svg';
+const src = `${base}/static/${LOGO_FILE}`;
+---
+
+<img src={src} alt={alt} class={className} loading="lazy" decoding="async" />

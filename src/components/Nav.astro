@@ -1,0 +1,79 @@
+---
+import { getDict } from '../i18n/utils';
+import type { Locale } from '../i18n/config';
+import LanguageSwitcher from './react/LanguageSwitcher.tsx';
+import VssLogo from './VssLogo.astro';
+
+interface Props {
+  locale: Locale;
+}
+const { locale } = Astro.props;
+const t = getDict(locale);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+
+// Determine current path segment after locale for the language switcher.
+const segments = Astro.url.pathname.replace(base, '').split('/').filter(Boolean);
+// segments[0] is locale; the rest form the sub-path
+const pathAfterLocale = segments.slice(1).join('/');
+
+const home = `${base}/${locale}`;
+const links = [
+  { href: `${home}#concepts`, label: t.nav.concepts },
+  { href: `${home}#timeline`, label: t.nav.timeline },
+  { href: `${home}#events`, label: t.nav.events },
+  { href: `${home}#about`, label: t.nav.about },
+];
+---
+
+<header
+  id="site-nav"
+  class="fixed top-0 z-40 w-full border-b border-transparent transition-all duration-300"
+>
+  <nav class="container-x flex items-center justify-between py-4">
+    <a href={home} class="group flex items-center gap-3">
+      <VssLogo class="h-10 w-10 shrink-0 transition group-hover:scale-105" />
+      <span class="heading-serif hidden leading-tight sm:block">
+        <span class="block text-base font-semibold tracking-wide text-ink">{t.trust.name}</span>
+        <span class="block text-[11px] font-medium tracking-wide text-accent-600">{t.trust.tagline}</span>
+      </span>
+    </a>
+
+    <div class="hidden items-center gap-8 md:flex">
+      {
+        links.map((l) => (
+          <a
+            href={l.href}
+            class="relative text-sm font-medium text-ink-soft transition hover:text-accent-600 after:absolute after:-bottom-1 after:left-0 after:h-px after:w-0 after:bg-accent-500 after:transition-all hover:after:w-full"
+          >
+            {l.label}
+          </a>
+        ))
+      }
+    </div>
+
+    <div class="flex items-center gap-3">
+      <LanguageSwitcher
+        client:load
+        current={locale}
+        base={base}
+        pathAfterLocale={pathAfterLocale}
+        label={t.nav.language}
+      />
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Add a solid backdrop to the nav once the user scrolls.
+  const nav = document.getElementById('site-nav');
+  const onScroll = () => {
+    if (!nav) return;
+    if (window.scrollY > 40) {
+      nav.classList.add('bg-paper/90', 'backdrop-blur-lg', 'border-ink/10', 'shadow-card');
+    } else {
+      nav.classList.remove('bg-paper/90', 'backdrop-blur-lg', 'border-ink/10', 'shadow-card');
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>

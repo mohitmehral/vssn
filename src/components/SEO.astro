@@ -1,0 +1,71 @@
+---
+import { locales, localeMeta, type Locale } from '../i18n/config';
+
+interface Props {
+  title: string;
+  description: string;
+  keywords?: string;
+  locale: Locale;
+  /** Path after the locale segment, e.g. '' for home, 'events' for events page */
+  pathAfterLocale?: string;
+  image?: string;
+}
+
+const { title, description, keywords, locale, pathAfterLocale = '', image } = Astro.props;
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const siteOrigin = Astro.site?.origin ?? 'https://mohitmehral.github.io';
+
+const buildPath = (loc: Locale) => {
+  const sub = pathAfterLocale ? `/${pathAfterLocale.replace(/^\/+/, '')}` : '';
+  return `${base}/${loc}${sub}`;
+};
+
+const canonical = `${siteOrigin}${buildPath(locale)}`;
+const ogImage = image
+  ? `${siteOrigin}${base}/${image.replace(/^\/+/, '')}`
+  : `${siteOrigin}${base}/og-default.svg`;
+
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  name: 'Vishwa Sanatan Sansthanam',
+  description,
+  inLanguage: locale,
+  url: canonical,
+};
+---
+
+<title>{title}</title>
+<meta name="description" content={description} />
+{keywords && <meta name="keywords" content={keywords} />}
+<link rel="canonical" href={canonical} />
+
+<!-- hreflang alternates for every locale + x-default -->
+{
+  locales.map((loc) => (
+    <link
+      rel="alternate"
+      hreflang={loc}
+      href={`${siteOrigin}${buildPath(loc)}`}
+    />
+  ))
+}
+<link rel="alternate" hreflang="x-default" href={`${siteOrigin}${buildPath('en')}`} />
+
+<!-- Open Graph -->
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content={locale} />
+<meta property="og:site_name" content="Vishwa Sanatan Sansthanam" />
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />

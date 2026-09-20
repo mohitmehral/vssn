@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#f6efe0"/>
+  <rect x="40" y="40" width="1120" height="550" fill="none" stroke="#a13d27" stroke-opacity="0.25" stroke-width="1.5"/>
+  <text x="600" y="300" text-anchor="middle" font-size="90" font-family="serif" fill="#211a13">ॐ</text>
+  <text x="600" y="400" text-anchor="middle" font-size="58" font-family="serif" font-weight="600" fill="#211a13">Sanatan Dharma</text>
+  <text x="600" y="450" text-anchor="middle" font-size="24" font-family="sans-serif" fill="#4a4038">The Eternal Way — told for today</text>
+  <line x1="500" y1="470" x2="700" y2="470" stroke="#a13d27" stroke-width="1.5"/>
+</svg>

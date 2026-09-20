@@ -1,0 +1,41 @@
+---
+import { defaultLocale } from '../i18n/config';
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = `${base}/${defaultLocale}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Not Found — Sanatan Dharma</title>
+    <style>
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        background: radial-gradient(circle at 50% 0%, #2a1a5e, #0d0821);
+        color: #f5e9cf;
+        font-family: system-ui, sans-serif;
+        text-align: center;
+      }
+      .om {
+        font-size: 4rem;
+        color: #d4af37;
+      }
+      a {
+        color: #d4af37;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <div class="om">ॐ</div>
+      <h1>404</h1>
+      <p>This path is not on the map.</p>
+      <p><a href={home}>Return to Sanatan Dharma</a></p>
+    </div>
+  </body>
+</html>

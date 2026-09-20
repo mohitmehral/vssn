@@ -1,0 +1,238 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Hero from '../../components/react/Hero.tsx';
+import Concepts from '../../components/react/Concepts.tsx';
+import Timeline from '../../components/react/Timeline.tsx';
+import TrustGallery from '../../components/react/TrustGallery.tsx';
+import PanchangCalendar from '../../components/react/PanchangCalendar.tsx';
+import VssLogo from '../../components/VssLogo.astro';
+import { locales, type Locale } from '../../i18n/config';
+import { getDict } from '../../i18n/utils';
+import { timeline, tField } from '../../data/timeline';
+import { festivals, fField } from '../../data/festivals';
+import { trustEvents } from '../../data/trustEvents';
+import { exField } from '../../data/conceptExamples';
+
+export function getStaticPaths() {
+  return locales.map((locale) => ({ params: { locale } }));
+}
+
+const { locale } = Astro.params as { locale: Locale };
+const t = getDict(locale);
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = `${base}/${locale}`;
+
+const conceptItems = (Object.keys(t.concepts.items) as (keyof typeof t.concepts.items)[]).map(
+  (key) => ({
+    key,
+    title: t.concepts.items[key].title,
+    short: t.concepts.items[key].short,
+    body: t.concepts.items[key].body,
+    example: exField(key, locale),
+  })
+);
+
+const eras = timeline.map((e) => ({
+  id: e.id,
+  period: e.period,
+  title: tField(e.title, locale),
+  summary: tField(e.summary, locale),
+  evidence: tField(e.evidence, locale),
+}));
+
+const festivalCards = festivals.map((f) => ({
+  id: f.id,
+  glyph: f.glyph,
+  recurring: f.recurring,
+  nextDate: f.nextDate,
+  name: fField(f.name, locale),
+  meaning: fField(f.meaning, locale),
+  source: fField(f.source, locale),
+}));
+
+function formatDate(iso: string): string {
+  try {
+    return new Intl.DateTimeFormat(locale, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    }).format(new Date(iso + 'T00:00:00'));
+  } catch {
+    return iso;
+  }
+}
+
+// "Today" at day granularity, for filtering to genuinely upcoming events.
+const todayIso = new Date().toISOString().slice(0, 10);
+
+function formatFullDate(iso: string): string {
+  try {
+    return new Intl.DateTimeFormat(locale, {
+      year: 'numeric',
+      month: 'short',
+      day: 'numeric',
+    }).format(new Date(iso + 'T00:00:00'));
+  } catch {
+    return iso;
+  }
+}
+
+// Hero "Living Calendar" panel data.
+// TOP zone: auto-rotating Vishwa Sanatan Sansthanam trust events (latest first).
+const trustSlides = trustEvents.slice(0, 6).map((e) => ({
+  key: `trust-${e.src}`,
+  image: e.src,
+  dateLabel: formatFullDate(e.date),
+  title: e.title,
+}));
+
+// Full trust-event list for the gallery section (all photos, newest first).
+const trustGalleryItems = trustEvents.map((e) => ({
+  date: e.date,
+  title: e.title,
+  src: e.src,
+}));
+
+// BOTTOM zone: genuinely UPCOMING festivals — those dated today or later,
+// soonest first, with the year shown. No scriptural source here.
+const upcomingRows = festivalCards
+  .filter((f) => f.nextDate && f.nextDate >= todayIso)
+  .sort((a, b) => (a.nextDate! < b.nextDate! ? -1 : 1))
+  .slice(0, 4)
+  .map((f) => ({
+    key: `fest-${f.id}`,
+    glyph: f.glyph,
+    dateLabel: formatDate(f.nextDate!),
+    name: f.name,
+    meaning: f.meaning,
+  }));
+
+const logoSrc = `${base}/static/vss-logo.svg`;
+
+// Festival markers for the Panchang calendar (dated festivals only).
+const festivalMarks = festivalCards
+  .filter((f) => f.nextDate)
+  .map((f) => ({ date: f.nextDate!, name: f.name, glyph: f.glyph }));
+
+// Calendar opens on the month of the soonest upcoming festival (or now).
+const soonest = festivalCards
+  .filter((f) => f.nextDate && f.nextDate >= todayIso)
+  .sort((a, b) => (a.nextDate! < b.nextDate! ? -1 : 1))[0]?.nextDate;
+const calStart = soonest ? new Date(soonest + 'T00:00:00') : new Date();
+---
+
+<Layout locale={locale}>
+  <Hero
+    client:load
+    eyebrow={t.hero.eyebrow}
+    title={t.hero.title}
+    subtitle={t.hero.subtitle}
+    lead={t.hero.lead}
+    ctaExplore={t.hero.ctaExplore}
+    ctaEvents={t.hero.ctaEvents}
+    scroll={t.hero.scroll}
+    exploreHref={`${home}#concepts`}
+    eventsHref={`${home}#events`}
+    trustName={t.trust.name}
+    trustTagline={t.trust.tagline}
+    eventsHeading={t.trust.eventsHeading}
+    upcomingHeading={t.trust.upcomingHeading}
+    logoSrc={logoSrc}
+    trustSlides={trustSlides}
+    festivals={upcomingRows}
+  />
+
+  <section id="concepts" class="scroll-mt-24 bg-gradient-to-b from-[#fff4e2] to-[#fde7d4] py-24">
+    <Concepts
+      client:visible
+      eyebrow={t.concepts.eyebrow}
+      title={t.concepts.title}
+      lead={t.concepts.lead}
+      readMore={t.concepts.readMore}
+      exampleLabel={t.concepts.exampleLabel}
+      items={conceptItems}
+    />
+  </section>
+
+  <section id="timeline" class="scroll-mt-24 py-24">
+    <Timeline
+      client:visible
+      eyebrow={t.timeline.eyebrow}
+      title={t.timeline.title}
+      lead={t.timeline.lead}
+      evidenceLabel={t.timeline.evidenceLabel}
+      eras={eras}
+    />
+  </section>
+
+  <section id="events" class="scroll-mt-24 py-24">
+    <TrustGallery
+      client:visible
+      eyebrow={t.trust.eyebrow}
+      title={t.trust.eventsHeading}
+      lead={t.trust.lead}
+      noTrustEvents={t.events.noTrustEvents}
+      locale={locale}
+      items={trustGalleryItems}
+    />
+  </section>
+
+  <section id="panchang" class="scroll-mt-24 bg-paper-soft py-16">
+    <PanchangCalendar
+      client:visible
+      eyebrow={t.calendar.eyebrow}
+      title={t.calendar.title}
+      lead={t.calendar.lead}
+      prev={t.calendar.prev}
+      next={t.calendar.next}
+      today={t.calendar.today}
+      note={t.calendar.note}
+      weekdays={t.calendar.weekdays}
+      legend={t.calendar.legend}
+      locale={locale}
+      festivals={festivalMarks}
+      startYear={calStart.getFullYear()}
+      startMonth={calStart.getMonth()}
+    />
+  </section>
+
+  <section id="about" class="scroll-mt-24 py-24">
+    <div class="container-x">
+      <div class="mx-auto max-w-3xl text-center">
+        <p class="eyebrow mx-auto mb-3 justify-center">{t.about.eyebrow}</p>
+        <h2 class="heading-serif text-3xl font-semibold text-ink sm:text-4xl">
+          {t.about.title}
+        </h2>
+        <p class="mt-6 text-lg leading-relaxed text-ink-soft">{t.about.lead}</p>
+      </div>
+
+      <!-- Trust identity band -->
+      <div class="mx-auto mt-14 max-w-4xl rounded-3xl border border-ink/10 bg-paper-white p-8 shadow-card sm:p-10">
+        <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
+          <VssLogo class="h-24 w-24 shrink-0" />
+          <div>
+            <p class="eyebrow mb-2">{t.trust.eyebrow}</p>
+            <h3 class="heading-serif text-2xl font-semibold text-ink">{t.trust.name}</h3>
+            <p class="mt-1 font-serif text-lg italic text-accent-600">{t.trust.tagline}</p>
+            <p class="mt-3 text-sm leading-relaxed text-ink-soft">{t.trust.lead}</p>
+          </div>
+        </div>
+        <div class="mt-8 grid grid-cols-2 gap-3 border-t border-ink/10 pt-6 sm:grid-cols-5">
+          {
+            [
+              t.trust.values.dharma,
+              t.trust.values.sanskar,
+              t.trust.values.harmony,
+              t.trust.values.seva,
+              t.trust.values.nation,
+            ].map((v) => (
+              <span class="rounded-full border border-accent-500/20 bg-paper px-3 py-2 text-center text-sm font-medium text-ink">
+                {v}
+              </span>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
