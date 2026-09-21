@@ -65,10 +65,10 @@ export default function Hero(props: Props) {
   };
 
   return (
-    <section className="relative overflow-hidden pt-32 pb-20 md:pt-40">
-      <div className="container-x grid items-center gap-14 lg:grid-cols-2">
+    <section className="relative overflow-hidden pt-24 pb-14 sm:pt-32 sm:pb-20 md:pt-40">
+      <div className="container-x grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
         <motion.div variants={container} initial="hidden" animate="show" className="max-w-2xl">
-          <motion.div variants={item} className="mb-6">
+          <motion.div variants={item} className="mb-5 sm:mb-6">
             <InkMark />
           </motion.div>
 
@@ -78,20 +78,20 @@ export default function Hero(props: Props) {
 
           <motion.h1
             variants={item}
-            className="heading-serif text-5xl font-semibold leading-[1.05] text-ink sm:text-6xl md:text-[4.2rem]"
+            className="heading-serif text-[2.4rem] font-semibold leading-[1.08] text-ink sm:text-5xl md:text-6xl lg:text-[4.2rem] lg:leading-[1.05]"
           >
             {props.title}
           </motion.h1>
 
-          <motion.p variants={item} className="mt-5 font-serif text-xl italic text-ink-soft sm:text-2xl">
+          <motion.p variants={item} className="mt-4 font-serif text-lg italic text-ink-soft sm:mt-5 sm:text-2xl">
             {props.subtitle}
           </motion.p>
 
-          <motion.p variants={item} className="mt-6 max-w-xl text-base leading-relaxed text-ink-soft">
+          <motion.p variants={item} className="mt-5 max-w-xl text-[15px] leading-relaxed text-ink-soft sm:mt-6 sm:text-base">
             {props.lead}
           </motion.p>
 
-          <motion.div variants={item} className="mt-9 flex flex-wrap gap-4">
+          <motion.div variants={item} className="mt-7 flex flex-wrap gap-3 sm:mt-9 sm:gap-4">
             <a href={props.exploreHref} className="btn-primary">
               {props.ctaExplore}
             </a>
