@@ -1,35 +1,35 @@
 # Trust Event Photos
 
-Drop event photographs into **this folder** to have them appear automatically
-in the "Our Trust Events" showcase on the website. The page always displays the
-**latest-dated** images first.
+Drop event photographs into **this folder** and they appear automatically in the
+"Sansthan Events" gallery and the hero "Living Calendar" panel. The site always
+shows the **newest photos first**.
 
-## Naming convention (required)
+## Naming — both of these work
 
+The site reads the date from the filename. Any image whose name **contains a
+`YYYY-MM-DD` date** is picked up. Two common patterns:
+
+**1. WhatsApp export style (what you're using):**
 ```
-YYYY-MM-DD_short-title.ext
+PHOTO-YYYY-MM-DD-HH-MM-SS.jpg
 ```
+e.g. `PHOTO-2026-09-21-16-45-59.jpg`
+- Date + time drive ordering (newest first, including time-of-day on the same day).
+- No title in the name → caption shows **"Sansthan Event"**.
 
-- `YYYY-MM-DD` — the date of the event (drives ordering, newest first)
-- `short-title` — a few words separated by hyphens; becomes the caption
-- `ext` — one of `jpg`, `jpeg`, `png`, `webp`
-
-### Examples
-
+**2. Titled style (optional, for a nicer caption):**
 ```
-2026-01-14_makar-sankranti-bhandara.webp
-2026-03-03_holi-satsang.jpg
-2026-08-15_annadanam-seva.png
+YYYY-MM-DD_short-title.jpg
 ```
+e.g. `2026-08-15_Manish-kumar-Varanasi.jpg` → caption **"Manish Kumar Varanasi"**.
 
-`2026-08-15_annadanam-seva.png` would show a caption of **"Annadanam Seva"**.
+Allowed extensions: `jpg`, `jpeg`, `png`, `webp`.
 
 ## How it works
 
-At build time the site scans this folder (`docs/events/`) via
-`src/data/trustEvents.ts`, parses the date prefix, sorts newest-first, and
-renders the images in the auto-scrolling showcase. Just add a file and rebuild
-(or push — the GitHub Action rebuilds automatically). No code changes needed.
+At build time `src/data/trustEvents.ts` scans this folder, extracts each date
+(and time if present), sorts newest-first, and `scripts/sync-events.mjs` copies
+the images into `public/events/` for publishing. Just add files and push — the
+GitHub Action rebuilds and deploys automatically. No code changes needed.
 
-> Keep image files reasonably sized (ideally under ~500 KB, max width ~1600px)
-> so the site stays fast.
+> Keep files reasonably sized (ideally under ~1 MB each) so the site stays fast.
