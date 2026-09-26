@@ -139,6 +139,37 @@ export const en = {
     chantPlay: 'Play Om chant',
     chantPause: 'Pause chant',
   },
+  assistant: {
+    open: 'Ask to Guru Ji',
+    title: 'Guru Ji',
+    mantra: 'ॐ सर्वे भवन्तु सुखिनः',
+    greeting: 'Namaste 🙏 I am the Sansthan\'s guide. How may I help you?',
+    placeholder: 'Ask about our services, events, or Sanatan Dharma…',
+    send: 'Send',
+    close: 'Close',
+    chips: {
+      services: 'Our services',
+      moksha: 'What is Moksha?',
+      contact: 'Contact us',
+    },
+    outOfScope:
+      'I can only guide you about Vishwa Sanatan Sansthanam and Sanatan Dharma. Please ask me something on those.',
+    routeIntro:
+      'That is a good question, but I do not have a full answer yet. Please reach Acharya ji directly:',
+    callAcharya: 'Call / WhatsApp Acharya ji',
+    emailQuery: 'Email your question',
+    chantNote: 'ॐ … let us return to peace. 🙏',
+  },
+  sounds: {
+    eyebrow: 'Sacred Sounds',
+    title: 'Chant along, or take it with you',
+    lead: 'Play these mantras for meditation, or download them to keep.',
+    download: 'Download',
+    tracks: {
+      omChanting: 'Om Chanting',
+      omNamahShivaya: 'Om Namah Shivaya',
+    },
+  },
 } as const;
 
 export type UISchema = typeof en;

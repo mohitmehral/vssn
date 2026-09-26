@@ -141,4 +141,32 @@ export const pt: UISchema = {
     chantPlay: 'Tocar canto Om',
     chantPause: 'Pausar canto',
   },
+  assistant: {
+    open: 'Pergunte ao Guru Ji',
+    title: 'Guru Ji',
+    mantra: 'ॐ सर्वे भवन्तु सुखिनः',
+    greeting: 'Namaste 🙏 Sou o guia da fundação. Como posso ajudar?',
+    placeholder: 'Pergunte sobre nossos serviços, eventos ou o Sanatan Dharma…',
+    send: 'Enviar',
+    close: 'Fechar',
+    chips: {
+      services: 'Nossos serviços',
+      moksha: 'O que é Moksha?',
+      contact: 'Fale conosco',
+    },
+    outOfScope:
+      'Só posso orientá-lo sobre a Vishwa Sanatan Sansthanam e o Sanatan Dharma. Pergunte-me sobre isso, por favor.',
+    routeIntro:
+      'Boa pergunta, mas ainda não tenho uma resposta completa. Contate o Acharya ji diretamente:',
+    callAcharya: 'Ligar / WhatsApp para Acharya ji',
+    emailQuery: 'Envie sua pergunta por e-mail',
+    chantNote: 'ॐ … voltemos à paz. 🙏',
+  },
+  sounds: {
+    eyebrow: 'Sons sagrados',
+    title: 'Cante junto ou leve com você',
+    lead: 'Toque estes mantras para meditar, ou baixe-os para guardar.',
+    download: 'Baixar',
+    tracks: { omChanting: 'Canto Om', omNamahShivaya: 'Om Namah Shivaya' },
+  },
 };
