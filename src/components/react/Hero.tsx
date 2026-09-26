@@ -41,7 +41,7 @@ export default function Hero(props: Props) {
       <div className="pointer-events-none absolute -right-16 bottom-10 h-40 w-40 rounded-full bg-clay shadow-neu-inset opacity-40" />
 
       <div className="container-x grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-        <motion.div variants={container} initial="hidden" animate="show" className="relative max-w-2xl">
+        <motion.div variants={container} initial="hidden" animate="show" className="relative min-w-0 max-w-2xl">
           {/* eyebrow + waving flag on one line — the dhwaj introduces the name */}
           <motion.div variants={item} className="mb-3 flex items-center gap-3">
             <WavingFlag className="h-12 w-14 shrink-0" />
@@ -62,11 +62,11 @@ export default function Hero(props: Props) {
             ))}
           </h1>
 
-          <motion.p variants={item} className="mt-4 text-lg text-saffron-deep sm:mt-5 sm:text-xl">
+          <motion.p variants={item} className="mt-4 break-words text-lg text-saffron-deep sm:mt-5 sm:text-xl">
             {props.subtitle}
           </motion.p>
 
-          <motion.p variants={item} className="mt-5 max-w-xl text-[15px] leading-relaxed text-ink-soft sm:text-base">
+          <motion.p variants={item} className="mt-5 max-w-xl break-words text-[15px] leading-relaxed text-ink-soft sm:text-base">
             {props.lead}
           </motion.p>
 
@@ -84,7 +84,7 @@ export default function Hero(props: Props) {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
-          className="w-full justify-self-center lg:justify-self-end"
+          className="w-full min-w-0 justify-self-center lg:justify-self-end"
         >
           <HeroEventsPanel
             trustName={props.trustName}
