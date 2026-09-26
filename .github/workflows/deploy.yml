@@ -37,7 +37,7 @@ jobs:
         # For a project site this is https://<user>.github.io/<repo>.
         env:
           SITE_URL: https://mohitmehral.github.io
-          BASE_PATH: /sanatan
+          BASE_PATH: /vssn
         run: npm run build
 
       - name: Add .nojekyll

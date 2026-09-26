@@ -9,10 +9,10 @@ const locales = ['en', 'hi', 'zh', 'es', 'ar', 'bn', 'pt', 'ru', 'fr', 'ja'];
 // Right-to-left languages
 const rtlLocales = ['ar'];
 
-// GitHub Pages project site: https://<user>.github.io/sanatan
+// GitHub Pages project site: https://<user>.github.io/vssn
 // Override SITE and BASE via env at build time if using a custom domain.
 const SITE = process.env.SITE_URL || 'https://mohitmehral.github.io';
-const BASE = process.env.BASE_PATH ?? '/sanatan';
+const BASE = process.env.BASE_PATH ?? '/vssn';
 
 export default defineConfig({
   site: SITE,
