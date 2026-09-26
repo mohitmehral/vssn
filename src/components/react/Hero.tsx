@@ -48,7 +48,7 @@ export default function Hero(props: Props) {
             <p className="eyebrow">{props.eyebrow}</p>
           </motion.div>
 
-          <h1 className="heading-serif text-[2.3rem] font-extrabold leading-[1.08] text-ink sm:text-5xl md:text-6xl lg:text-[4rem] lg:leading-[1.04]">
+          <h1 className="heading-serif break-words text-[1.9rem] font-extrabold leading-[1.1] text-ink sm:text-5xl md:text-6xl lg:text-[4rem] lg:leading-[1.04]">
             {words.map((w, i) => (
               <motion.span
                 key={i}

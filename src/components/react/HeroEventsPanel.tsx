@@ -55,7 +55,7 @@ export default function HeroEventsPanel({
   const active = trustSlides[index];
 
   return (
-    <div className="w-full max-w-md overflow-hidden rounded-neu bg-clay shadow-neu">
+    <div className="w-full max-w-full overflow-hidden rounded-neu bg-clay shadow-neu sm:max-w-md">
       {/* Brand header */}
       <div className="flex items-center gap-3 px-5 py-4">
         <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full bg-clay shadow-neu-inset-deep">
