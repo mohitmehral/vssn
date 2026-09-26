@@ -33,11 +33,11 @@ jobs:
         run: npm ci
 
       - name: Build site
-        # SITE_URL + BASE_PATH tell Astro the final public URL.
-        # For a project site this is https://<user>.github.io/<repo>.
+        # Served on a custom domain at the root. To move to a future domain
+        # (e.g. www.vssn.org.in) update SITE_URL here + public/CNAME + DNS.
         env:
-          SITE_URL: https://mohitmehral.github.io
-          BASE_PATH: /vssn
+          SITE_URL: https://vssn.apnok.com
+          BASE_PATH: /
         run: npm run build
 
       - name: Add .nojekyll

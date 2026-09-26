@@ -9,10 +9,12 @@ const locales = ['hi', 'en', 'zh', 'es', 'ar', 'bn', 'pt', 'ru', 'fr', 'ja'];
 // Right-to-left languages
 const rtlLocales = ['ar'];
 
-// GitHub Pages project site: https://<user>.github.io/vssn
-// Override SITE and BASE via env at build time if using a custom domain.
-const SITE = process.env.SITE_URL || 'https://mohitmehral.github.io';
-const BASE = process.env.BASE_PATH ?? '/vssn';
+// Served on a custom domain at the ROOT (base '/'). Current domain:
+// vssn.apnok.com. To switch to a future domain (e.g. www.vssn.org.in), just
+// change SITE below (and public/CNAME + the DNS record). Base stays '/'.
+// Both can still be overridden via env at build time.
+const SITE = process.env.SITE_URL || 'https://vssn.apnok.com';
+const BASE = process.env.BASE_PATH ?? '/';
 
 export default defineConfig({
   site: SITE,
