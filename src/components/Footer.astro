@@ -25,67 +25,62 @@ const trust = {
 };
 ---
 
-<footer class="relative mt-24 border-t border-ink/10 bg-paper-soft">
+<footer class="relative mt-24 bg-clay">
   <div class="container-x py-14">
-    <!-- Trust identity + contact -->
-    <div class="grid gap-10 md:grid-cols-[1.2fr_1fr]">
+    <!-- Trust identity + contact, molded into one neu card -->
+    <div class="grid gap-8 rounded-neu bg-clay p-8 shadow-neu md:grid-cols-[1.2fr_1fr] md:gap-10 md:p-10">
       <div>
         <div class="flex items-center gap-3">
-          <VssLogo class="h-12 w-12 shrink-0" />
+          <span class="grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-full bg-clay shadow-neu-inset-deep">
+            <VssLogo class="h-full w-full rounded-full object-cover" />
+          </span>
           <div>
-            <p class="heading-serif text-lg font-semibold text-ink">{t.trust.name}</p>
-            <p class="text-sm text-accent-600">{t.trust.tagline}</p>
+            <p class="heading-serif text-lg font-bold text-ink">{t.trust.name}</p>
+            <p class="text-sm text-saffron-deep">{t.trust.tagline}</p>
           </div>
         </div>
         <p class="mt-4 max-w-md text-sm leading-relaxed text-ink-soft">{t.footer.tagline}</p>
-        <p class="mt-4 inline-flex items-center gap-2 rounded-full border border-ink/15 bg-paper-white px-3 py-1.5 text-xs font-medium text-ink">
-          <span class="text-accent-600">Reg. No.</span>
+        <p class="mt-5 inline-flex items-center gap-2 rounded-full bg-clay px-4 py-2 text-xs font-medium text-ink shadow-neu-inset-sm">
+          <span class="font-semibold text-saffron-deep">Reg. No.</span>
           <span class="tracking-wide">{trust.regNo}</span>
         </p>
       </div>
 
       <!-- Contact -->
-      <div class="space-y-2.5 text-sm">
+      <div class="space-y-3 text-sm">
         <a
           href={trust.websiteUrl}
           target="_blank"
           rel="noopener"
-          class="flex items-center gap-2.5 text-ink-soft transition hover:text-accent-600"
+          class="flex items-center gap-3 text-ink-soft transition hover:text-saffron-deep"
         >
-          <span aria-hidden="true" class="text-accent-500">🌐</span>{trust.website}
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay shadow-neu-inset-sm" aria-hidden="true">🌐</span>{trust.website}
         </a>
         <a
           href={`mailto:${trust.email}`}
-          class="flex items-center gap-2.5 break-all text-ink-soft transition hover:text-accent-600"
+          class="flex items-center gap-3 break-all text-ink-soft transition hover:text-saffron-deep"
         >
-          <span aria-hidden="true" class="text-accent-500">✉️</span>{trust.email}
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay shadow-neu-inset-sm" aria-hidden="true">✉️</span>{trust.email}
         </a>
         <a
           href={`tel:${trust.phoneTel}`}
-          class="flex items-center gap-2.5 text-ink-soft transition hover:text-accent-600"
+          class="flex items-center gap-3 text-ink-soft transition hover:text-saffron-deep"
         >
-          <span aria-hidden="true" class="text-accent-500">📞</span>{trust.phone}
+          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay shadow-neu-inset-sm" aria-hidden="true">📞</span>{trust.phone}
         </a>
-        <div class="flex items-center gap-4 pt-1.5">
-          <a href={trust.facebook} target="_blank" rel="noopener" class="text-ink-soft transition hover:text-accent-600" aria-label="Facebook">
-            Facebook <span class="text-ink-faint">{trust.handle}</span>
+        <div class="flex flex-wrap gap-3 pt-1">
+          <a href={trust.facebook} target="_blank" rel="noopener" class="neu-chip transition hover:text-saffron-deep" aria-label="Facebook">
+            Facebook
           </a>
-        </div>
-        <div>
-          <a href={trust.instagram} target="_blank" rel="noopener" class="text-ink-soft transition hover:text-accent-600" aria-label="Instagram">
-            Instagram <span class="text-ink-faint">{trust.handle}</span>
+          <a href={trust.instagram} target="_blank" rel="noopener" class="neu-chip transition hover:text-saffron-deep" aria-label="Instagram">
+            Instagram
           </a>
         </div>
       </div>
     </div>
 
-    <div class="mt-10 flex flex-col items-center justify-between gap-3 border-t border-ink/10 pt-6 text-center text-xs text-ink-faint sm:flex-row sm:text-left">
-      <span>© {year} {t.trust.name}. {t.footer.rights}</span>
-      <a
-        href={`${base}/${locale}#sources`}
-        class="text-accent-600 underline-offset-4 transition hover:underline"
-        >{t.footer.sources}</a
-      >
+    <div class="mt-8 text-center text-xs text-ink-faint">
+      © {year} {t.trust.name}. {t.footer.rights}
     </div>
   </div>
 </footer>

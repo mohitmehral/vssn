@@ -126,10 +126,19 @@ export const fr: UISchema = {
     eyebrow: 'Notre but',
     title: 'Pourquoi cela existe',
     lead: "Présenter la profondeur du Sanatan Dharma avec clarté, beauté et honnêteté — sans bruit, fondé sur les sources, ouvert à tout chercheur.",
+    showAll: 'Voir tous les objectifs',
+    showLess: 'Voir moins',
   },
   footer: {
     tagline: "Sanatan Dharma — la voie éternelle, racontée pour aujourd'hui.",
     rights: 'Fait avec dévotion. Savoir partagé librement.',
     sources: 'Sources et références',
+  },
+  notFound: {
+    title: "Ce chemin n'est pas sur la carte",
+    lead: "La page recherchée est introuvable. Revenez à l'accueil, ou faites une pause avec l'éternel.",
+    home: "Retour à l'accueil",
+    chantPlay: 'Lire le chant Om',
+    chantPause: 'Mettre en pause',
   },
 };

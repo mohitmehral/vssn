@@ -32,7 +32,7 @@ export default function LanguageSwitcher({ current, base, pathAfterLocale, label
         onClick={() => setOpen((v) => !v)}
         aria-label={label}
         aria-expanded={open}
-        className="flex items-center gap-2 rounded-full border border-ink/15 px-4 py-2 text-sm font-medium text-ink transition hover:border-accent-500/50 hover:bg-accent-50"
+        className="flex items-center gap-2 rounded-full bg-clay px-4 py-2 text-sm font-medium text-ink shadow-neu transition hover:-translate-y-0.5 hover:shadow-neu-hover active:shadow-neu-inset focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron-deep focus-visible:ring-offset-2 focus-visible:ring-offset-clay"
       >
         <span className="text-base">{localeMeta[current].flag}</span>
         <span className="hidden sm:inline">{localeMeta[current].native}</span>
@@ -48,7 +48,7 @@ export default function LanguageSwitcher({ current, base, pathAfterLocale, label
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -8, scale: 0.97 }}
             transition={{ duration: 0.18 }}
-            className="absolute right-0 z-50 mt-2 grid max-h-80 w-56 grid-cols-1 gap-1 overflow-auto rounded-2xl border border-ink/10 bg-paper-white p-2 shadow-card-lg"
+            className="absolute right-0 z-50 mt-3 grid max-h-80 w-56 grid-cols-1 gap-1 overflow-auto rounded-2xl bg-clay p-2 shadow-neu"
           >
             {locales.map((loc) => (
               <li key={loc}>
@@ -56,8 +56,8 @@ export default function LanguageSwitcher({ current, base, pathAfterLocale, label
                   href={hrefFor(loc)}
                   className={`flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition ${
                     loc === current
-                      ? 'bg-accent-50 text-accent-600'
-                      : 'text-ink-soft hover:bg-paper'
+                      ? 'text-saffron-deep shadow-neu-inset-sm'
+                      : 'text-ink-soft hover:text-saffron-deep'
                   }`}
                 >
                   <span className="text-base">{localeMeta[loc].flag}</span>

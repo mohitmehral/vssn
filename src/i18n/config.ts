@@ -1,8 +1,8 @@
 // Central i18n configuration for the Sanatan Dharma site.
 
 export const locales = [
-  'en',
   'hi',
+  'en',
   'zh',
   'es',
   'ar',
@@ -15,7 +15,7 @@ export const locales = [
 
 export type Locale = (typeof locales)[number];
 
-export const defaultLocale: Locale = 'en';
+export const defaultLocale: Locale = 'hi';
 
 export const rtlLocales: Locale[] = ['ar'];
 

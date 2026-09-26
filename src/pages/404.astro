@@ -1,41 +1,55 @@
 ---
+import Layout from '../layouts/Layout.astro';
+import SanatanOrbit from '../components/react/SanatanOrbit.tsx';
+import OmChant from '../components/react/OmChant.tsx';
 import { defaultLocale } from '../i18n/config';
+import { getDict } from '../i18n/utils';
+
+// GitHub Pages serves a single 404.html; render it in the default locale (Hindi).
+const locale = defaultLocale;
+const t = getDict(locale);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const home = `${base}/${defaultLocale}`;
+const home = `${base}/${locale}`;
+
+const conceptOrbit = (Object.keys(t.concepts.items) as (keyof typeof t.concepts.items)[]).map(
+  (key) => ({ key, label: t.concepts.items[key].title })
+);
+
+const omSrc = `${base}/static/om-chant.mp3`;
 ---
 
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Not Found — Sanatan Dharma</title>
-    <style>
-      body {
-        margin: 0;
-        min-height: 100vh;
-        display: grid;
-        place-items: center;
-        background: radial-gradient(circle at 50% 0%, #2a1a5e, #0d0821);
-        color: #f5e9cf;
-        font-family: system-ui, sans-serif;
-        text-align: center;
-      }
-      .om {
-        font-size: 4rem;
-        color: #d4af37;
-      }
-      a {
-        color: #d4af37;
-      }
-    </style>
-  </head>
-  <body>
-    <div>
-      <div class="om">ॐ</div>
-      <h1>404</h1>
-      <p>This path is not on the map.</p>
-      <p><a href={home}>Return to Sanatan Dharma</a></p>
+<Layout locale={locale} title="404 — Vishwa Sanatan Sansthanam">
+  <section class="flex min-h-[80vh] items-center py-24">
+    <div class="container-x">
+      <div class="grid items-center gap-10 lg:grid-cols-2">
+        <div class="text-center lg:text-left">
+          <p class="eyebrow mb-4 justify-center lg:justify-start">404</p>
+          <h1 class="heading-serif text-4xl font-extrabold leading-tight text-ink sm:text-5xl">
+            {t.notFound.title}
+          </h1>
+          <p class="mt-4 max-w-md text-ink-soft">{t.notFound.lead}</p>
+          <div class="mt-8 flex flex-wrap items-center justify-center gap-3 lg:justify-start">
+            <a href={home} class="btn-primary">{t.notFound.home}</a>
+            <OmChant
+              client:load
+              src={omSrc}
+              playLabel={t.notFound.chantPlay}
+              pauseLabel={t.notFound.chantPause}
+            />
+          </div>
+        </div>
+
+        <div>
+          <SanatanOrbit
+            client:load
+            eyebrow={t.concepts.eyebrow}
+            title={t.concepts.title}
+            lead={t.concepts.lead}
+            concepts={conceptOrbit}
+            showHeader={false}
+          />
+        </div>
+      </div>
     </div>
-  </body>
-</html>
+  </section>
+</Layout>

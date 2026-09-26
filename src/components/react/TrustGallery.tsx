@@ -70,23 +70,25 @@ export default function TrustGallery({ eyebrow, title, lead, noTrustEvents, loca
             onMouseEnter={() => setPaused(true)}
             onMouseLeave={() => setPaused(false)}
           >
-            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-paper to-transparent" />
-            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-paper to-transparent" />
-            <div ref={trackRef} className="flex gap-5 will-change-transform">
+            <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-clay to-transparent" />
+            <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-clay to-transparent" />
+            <div ref={trackRef} className="flex gap-6 px-2 py-2 will-change-transform">
               {loop.map((e, i) => (
                 <figure
                   key={`${e.src}-${i}`}
-                  className="group relative w-72 shrink-0 overflow-hidden rounded-2xl border border-ink/10 shadow-card"
+                  className="group relative w-72 shrink-0 overflow-hidden rounded-neu bg-clay p-2 shadow-neu"
                 >
-                  <img
-                    src={e.src}
-                    alt={e.title}
-                    loading="lazy"
-                    className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/85 to-transparent p-4">
-                    <p className="text-xs text-paper/80">{formatDate(e.date, locale)}</p>
-                    <p className="heading-serif text-sm font-semibold text-paper-white">{e.title}</p>
+                  <div className="overflow-hidden rounded-2xl shadow-neu-inset">
+                    <img
+                      src={e.src}
+                      alt={e.title}
+                      loading="lazy"
+                      className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    />
+                  </div>
+                  <figcaption className="absolute inset-x-2 bottom-2 rounded-b-2xl bg-gradient-to-t from-maroon-deep/90 to-transparent p-4">
+                    <p className="text-xs text-clay/80">{formatDate(e.date, locale)}</p>
+                    <p className="heading-serif text-sm font-bold text-clay">{e.title}</p>
                   </figcaption>
                 </figure>
               ))}
