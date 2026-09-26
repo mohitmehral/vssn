@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mohitmehral.github.io/vssn/sitemap-index.xml
+Sitemap: https://vssn.apnok.com/sitemap-index.xml

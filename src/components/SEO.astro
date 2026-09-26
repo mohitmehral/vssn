@@ -22,23 +22,59 @@ const buildPath = (loc: Locale) => {
 };
 
 const canonical = `${siteOrigin}${buildPath(locale)}`;
+// Use the real logo (JPG) for OG — social platforms don't render SVG previews.
 const ogImage = image
   ? `${siteOrigin}${base}/${image.replace(/^\/+/, '')}`
-  : `${siteOrigin}${base}/og-default.svg`;
+  : `${siteOrigin}${base}/static/vssn-logo.jpg`;
 
-const structuredData = {
+// NGO / Organization schema — richer than a bare WebSite for a trust; helps
+// search engines build an organisation profile.
+const orgSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'NGO',
+  name: 'Vishwa Sanatan Sansthanam',
+  alternateName: 'विश्व सनातन संस्थानम्',
+  url: `${siteOrigin}${base}/`,
+  logo: `${siteOrigin}${base}/static/vssn-logo.jpg`,
+  image: ogImage,
+  description,
+  slogan: 'Yato Dharmastato Jayah',
+  foundingDate: '2026-01-29',
+  foundingLocation: 'India',
+  email: 'vishwasanatansansthanam@gmail.com',
+  telephone: '+91-7388735905',
+  contactPoint: {
+    '@type': 'ContactPoint',
+    telephone: '+91-7388735905',
+    email: 'vishwasanatansansthanam@gmail.com',
+    contactType: 'customer support',
+    availableLanguage: ['Hindi', 'English'],
+  },
+  sameAs: [
+    'https://www.facebook.com/vishwasanatansansthanam',
+    'https://www.instagram.com/vishwasanatansansthanam',
+    'https://www.vssn.org.in',
+  ],
+};
+
+const siteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Vishwa Sanatan Sansthanam',
-  description,
+  url: `${siteOrigin}${base}/`,
   inLanguage: locale,
-  url: canonical,
+  description,
 };
+
+// Other locales for og:locale:alternate (BCP-ish underscore form).
+const altLocales = locales.filter((l) => l !== locale);
 ---
 
 <title>{title}</title>
 <meta name="description" content={description} />
 {keywords && <meta name="keywords" content={keywords} />}
+<meta name="robots" content="index, follow, max-image-preview:large" />
+<meta name="author" content="Vishwa Sanatan Sansthanam" />
 <link rel="canonical" href={canonical} />
 
 <!-- hreflang alternates for every locale + x-default -->
@@ -59,7 +95,9 @@ const structuredData = {
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content="Vishwa Sanatan Sansthanam" />
 <meta property="og:locale" content={locale} />
+{altLocales.map((l) => <meta property="og:locale:alternate" content={l} />)}
 <meta property="og:site_name" content="Vishwa Sanatan Sansthanam" />
 
 <!-- Twitter -->
@@ -67,5 +105,7 @@ const structuredData = {
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content="Vishwa Sanatan Sansthanam" />
 
-<script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+<script type="application/ld+json" set:html={JSON.stringify(orgSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(siteSchema)} />
