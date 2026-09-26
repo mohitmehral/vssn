@@ -1,6 +1,7 @@
 ---
 import { getDict } from '../i18n/utils';
 import type { Locale } from '../i18n/config';
+import VssLogo from './VssLogo.astro';
 
 interface Props {
   locale: Locale;
@@ -9,22 +10,82 @@ const { locale } = Astro.props;
 const t = getDict(locale);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const year = new Date().getFullYear();
+
+// Official Vishwa Sanatan Sansthanam details (from the trust banner).
+const trust = {
+  regNo: 'IN-UP76422624409815Y',
+  website: 'www.vssn.org.in',
+  websiteUrl: 'https://www.vssn.org.in',
+  email: 'vishwasanatansansthanam@gmail.com',
+  phone: '+91 7388735905',
+  phoneTel: '+917388735905',
+  facebook: 'https://www.facebook.com/vishwasanatansansthanam',
+  instagram: 'https://www.instagram.com/vishwasanatansansthanam',
+  handle: '/vishwasanatansansthanam',
+};
 ---
 
 <footer class="relative mt-24 border-t border-ink/10 bg-paper-soft">
   <div class="container-x py-14">
-    <div class="flex flex-col items-center gap-4 text-center">
-      <span class="text-2xl text-accent-500" aria-hidden="true">ॐ</span>
-      <p class="heading-serif max-w-xl text-lg text-ink">{t.footer.tagline}</p>
-      <p class="text-sm text-ink-faint">{t.footer.rights}</p>
+    <!-- Trust identity + contact -->
+    <div class="grid gap-10 md:grid-cols-[1.2fr_1fr]">
+      <div>
+        <div class="flex items-center gap-3">
+          <VssLogo class="h-12 w-12 shrink-0" />
+          <div>
+            <p class="heading-serif text-lg font-semibold text-ink">{t.trust.name}</p>
+            <p class="text-sm text-accent-600">{t.trust.tagline}</p>
+          </div>
+        </div>
+        <p class="mt-4 max-w-md text-sm leading-relaxed text-ink-soft">{t.footer.tagline}</p>
+        <p class="mt-4 inline-flex items-center gap-2 rounded-full border border-ink/15 bg-paper-white px-3 py-1.5 text-xs font-medium text-ink">
+          <span class="text-accent-600">Reg. No.</span>
+          <span class="tracking-wide">{trust.regNo}</span>
+        </p>
+      </div>
+
+      <!-- Contact -->
+      <div class="space-y-2.5 text-sm">
+        <a
+          href={trust.websiteUrl}
+          target="_blank"
+          rel="noopener"
+          class="flex items-center gap-2.5 text-ink-soft transition hover:text-accent-600"
+        >
+          <span aria-hidden="true" class="text-accent-500">🌐</span>{trust.website}
+        </a>
+        <a
+          href={`mailto:${trust.email}`}
+          class="flex items-center gap-2.5 break-all text-ink-soft transition hover:text-accent-600"
+        >
+          <span aria-hidden="true" class="text-accent-500">✉️</span>{trust.email}
+        </a>
+        <a
+          href={`tel:${trust.phoneTel}`}
+          class="flex items-center gap-2.5 text-ink-soft transition hover:text-accent-600"
+        >
+          <span aria-hidden="true" class="text-accent-500">📞</span>{trust.phone}
+        </a>
+        <div class="flex items-center gap-4 pt-1.5">
+          <a href={trust.facebook} target="_blank" rel="noopener" class="text-ink-soft transition hover:text-accent-600" aria-label="Facebook">
+            Facebook <span class="text-ink-faint">{trust.handle}</span>
+          </a>
+        </div>
+        <div>
+          <a href={trust.instagram} target="_blank" rel="noopener" class="text-ink-soft transition hover:text-accent-600" aria-label="Instagram">
+            Instagram <span class="text-ink-faint">{trust.handle}</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col items-center justify-between gap-3 border-t border-ink/10 pt-6 text-center text-xs text-ink-faint sm:flex-row sm:text-left">
+      <span>© {year} {t.trust.name}. {t.footer.rights}</span>
       <a
         href={`${base}/${locale}#sources`}
-        class="text-sm text-accent-600 underline-offset-4 transition hover:underline"
+        class="text-accent-600 underline-offset-4 transition hover:underline"
         >{t.footer.sources}</a
       >
-    </div>
-    <div class="mt-10 border-t border-ink/10 pt-6 text-center text-xs text-ink-faint">
-      © {year} Sanatan Dharma
     </div>
   </div>
 </footer>
