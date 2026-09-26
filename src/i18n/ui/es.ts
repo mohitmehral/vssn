@@ -112,6 +112,11 @@ export const es: UISchema = {
     note: 'Las fechas siguen el Panchang lunisolar y son aproximadas; confírmalas con un Panchang local.',
     today: 'Hoy',
   },
+  services: {
+    eyebrow: 'Lo que ofrecemos',
+    title: 'Servicios especiales',
+    lead: 'Orientación y prácticas ofrecidas por la fundación, para el bienestar de cuerpo, mente y espíritu.',
+  },
   about: {
     eyebrow: 'Nuestro propósito',
     title: 'Por qué existe',

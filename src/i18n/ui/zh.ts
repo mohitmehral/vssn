@@ -111,6 +111,11 @@ export const zh: UISchema = {
     note: '日期依阴阳合历（潘查昂）而定，为近似值；请以当地历书核对。',
     today: '今天',
   },
+  services: {
+    eyebrow: '我们的服务',
+    title: '特别服务',
+    lead: '学会提供的指导与修习——助益身、心、灵的安康。',
+  },
   about: {
     eyebrow: '我们的宗旨',
     title: '为何存在',

@@ -112,6 +112,11 @@ export const ja: UISchema = {
     note: '日付は太陰太陽暦（パンチャンガ）に基づく概算です。現地の暦でご確認ください。',
     today: '今日',
   },
+  services: {
+    eyebrow: '提供内容',
+    title: '特別なサービス',
+    lead: '協会が提供する導きと実践——心身と魂の健やかさのために。',
+  },
   about: {
     eyebrow: '私たちの目的',
     title: 'なぜ存在するのか',

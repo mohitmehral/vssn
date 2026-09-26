@@ -110,6 +110,11 @@ export const en = {
     note: 'Tithi and festival dates follow the lunisolar Panchang and are approximate; confirm with a local Panchang.',
     today: 'Today',
   },
+  services: {
+    eyebrow: 'What we offer',
+    title: 'Special Services',
+    lead: 'Guidance and practices offered by the Sansthan — for wellbeing of body, mind and spirit.',
+  },
   about: {
     eyebrow: 'Our Purpose',
     title: 'Why this exists',

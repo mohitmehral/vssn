@@ -12,6 +12,8 @@ import { timeline, tField } from '../../data/timeline';
 import { festivals, fField } from '../../data/festivals';
 import { trustEvents } from '../../data/trustEvents';
 import { exField } from '../../data/conceptExamples';
+import { services, sField } from '../../data/services';
+import Services from '../../components/react/Services.tsx';
 
 export function getStaticPaths() {
   return locales.map((locale) => ({ params: { locale } }));
@@ -109,6 +111,12 @@ const upcomingRows = festivalCards
 
 const logoSrc = `${base}/static/vss-logo.svg`;
 
+const serviceItems = services.map((s) => ({
+  key: s.key,
+  icon: s.icon,
+  label: sField(s.label, locale),
+}));
+
 // Festival markers for the Panchang calendar (dated festivals only).
 const festivalMarks = festivalCards
   .filter((f) => f.nextDate)
@@ -193,6 +201,16 @@ const calStart = soonest ? new Date(soonest + 'T00:00:00') : new Date();
       festivals={festivalMarks}
       startYear={calStart.getFullYear()}
       startMonth={calStart.getMonth()}
+    />
+  </section>
+
+  <section id="services" class="scroll-mt-20 bg-gradient-to-b from-[#fde7d4] to-[#fff4e2] py-16 sm:py-24">
+    <Services
+      client:visible
+      eyebrow={t.services.eyebrow}
+      title={t.services.title}
+      lead={t.services.lead}
+      items={serviceItems}
     />
   </section>
 
