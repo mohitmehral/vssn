@@ -1,5 +1,6 @@
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 import HeroEventsPanel, { type TrustSlide, type FestivalRow } from './HeroEventsPanel';
+import WavingFlag from './WavingFlag';
 
 interface Props {
   eyebrow: string;
@@ -11,7 +12,6 @@ interface Props {
   scroll: string;
   exploreHref: string;
   eventsHref: string;
-  // Trust panel
   trustName: string;
   trustTagline: string;
   eventsHeading: string;
@@ -21,73 +21,52 @@ interface Props {
   festivals: FestivalRow[];
 }
 
-// A single quiet line-drawn glyph, not a spinning wheel — a mark of respect,
-// not a decoration. Drawn once on load via SVG stroke animation.
-function InkMark() {
-  return (
-    <svg viewBox="0 0 120 120" className="h-14 w-14" aria-hidden="true">
-      <motion.circle
-        cx="60"
-        cy="60"
-        r="46"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.4"
-        className="text-accent-500/70"
-        initial={{ pathLength: 0, opacity: 0 }}
-        animate={{ pathLength: 1, opacity: 1 }}
-        transition={{ duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-      />
-      <motion.text
-        x="60"
-        y="76"
-        textAnchor="middle"
-        fontSize="46"
-        className="fill-ink font-display"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.6, duration: 0.8 }}
-      >
-        ॐ
-      </motion.text>
-    </svg>
-  );
-}
-
 export default function Hero(props: Props) {
+  const reduce = useReducedMotion();
   const container = {
     hidden: {},
-    show: { transition: { staggerChildren: 0.12, delayChildren: 0.15 } },
+    show: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } },
   };
   const item = {
     hidden: { opacity: 0, y: 22 },
     show: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
   };
+  // Word-by-word reveal for the title.
+  const words = props.title.split(' ');
 
   return (
-    <section className="relative overflow-hidden pt-24 pb-14 sm:pt-32 sm:pb-20 md:pt-40">
+    <section className="relative overflow-hidden pt-24 pb-14 sm:pt-32 sm:pb-20 md:pt-36">
+      {/* soft molded ambient blobs (very subtle, same-surface feel) */}
+      <div className="pointer-events-none absolute -left-24 top-32 h-64 w-64 rounded-full bg-clay shadow-neu opacity-40 animate-float-slow" />
+      <div className="pointer-events-none absolute -right-16 bottom-10 h-40 w-40 rounded-full bg-clay shadow-neu-inset opacity-40" />
+
       <div className="container-x grid items-center gap-10 lg:grid-cols-2 lg:gap-14">
-        <motion.div variants={container} initial="hidden" animate="show" className="max-w-2xl">
-          <motion.div variants={item} className="mb-5 sm:mb-6">
-            <InkMark />
+        <motion.div variants={container} initial="hidden" animate="show" className="relative max-w-2xl">
+          {/* eyebrow + waving flag on one line — the dhwaj introduces the name */}
+          <motion.div variants={item} className="mb-3 flex items-center gap-3">
+            <WavingFlag className="h-12 w-14 shrink-0" />
+            <p className="eyebrow">{props.eyebrow}</p>
           </motion.div>
 
-          <motion.p variants={item} className="eyebrow mb-4">
-            {props.eyebrow}
-          </motion.p>
+          <h1 className="heading-serif text-[2.3rem] font-extrabold leading-[1.08] text-ink sm:text-5xl md:text-6xl lg:text-[4rem] lg:leading-[1.04]">
+            {words.map((w, i) => (
+              <motion.span
+                key={i}
+                className="mr-[0.25em] inline-block"
+                initial={{ opacity: 0, y: 24, filter: 'blur(6px)' }}
+                animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
+                transition={{ duration: 0.6, delay: 0.2 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              >
+                {w}
+              </motion.span>
+            ))}
+          </h1>
 
-          <motion.h1
-            variants={item}
-            className="heading-serif text-[2.4rem] font-semibold leading-[1.08] text-ink sm:text-5xl md:text-6xl lg:text-[4.2rem] lg:leading-[1.05]"
-          >
-            {props.title}
-          </motion.h1>
-
-          <motion.p variants={item} className="mt-4 font-serif text-lg italic text-ink-soft sm:mt-5 sm:text-2xl">
+          <motion.p variants={item} className="mt-4 text-lg text-saffron-deep sm:mt-5 sm:text-xl">
             {props.subtitle}
           </motion.p>
 
-          <motion.p variants={item} className="mt-5 max-w-xl text-[15px] leading-relaxed text-ink-soft sm:mt-6 sm:text-base">
+          <motion.p variants={item} className="mt-5 max-w-xl text-[15px] leading-relaxed text-ink-soft sm:text-base">
             {props.lead}
           </motion.p>
 
@@ -95,7 +74,7 @@ export default function Hero(props: Props) {
             <a href={props.exploreHref} className="btn-primary">
               {props.ctaExplore}
             </a>
-            <a href={props.eventsHref} className="btn-ghost">
+            <a href={props.eventsHref} className="btn-secondary">
               {props.ctaEvents}
             </a>
           </motion.div>
@@ -104,7 +83,7 @@ export default function Hero(props: Props) {
         <motion.div
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, delay: 0.4, ease: [0.22, 1, 0.36, 1] }}
           className="w-full justify-self-center lg:justify-self-end"
         >
           <HeroEventsPanel

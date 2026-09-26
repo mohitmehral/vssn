@@ -1,21 +1,16 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import Hero from '../../components/react/Hero.tsx';
-import Concepts from '../../components/react/Concepts.tsx';
-import Timeline from '../../components/react/Timeline.tsx';
+import SanatanOrbit from '../../components/react/SanatanOrbit.tsx';
 import TrustGallery from '../../components/react/TrustGallery.tsx';
-import PanchangCalendar from '../../components/react/PanchangCalendar.tsx';
-import VssLogo from '../../components/VssLogo.astro';
 import { locales, type Locale } from '../../i18n/config';
 import { getDict } from '../../i18n/utils';
-import { timeline, tField } from '../../data/timeline';
 import { festivals, fField } from '../../data/festivals';
 import { trustEvents } from '../../data/trustEvents';
-import { exField } from '../../data/conceptExamples';
 import { services, sField } from '../../data/services';
 import Services from '../../components/react/Services.tsx';
 import { aboutSections, aField } from '../../data/aboutUs';
-import AboutAccordion from '../../components/react/AboutAccordion.tsx';
+import AboutSection from '../../components/react/AboutSection.tsx';
 import { members } from '../../data/members';
 import Members from '../../components/react/Members.tsx';
 
@@ -28,23 +23,10 @@ const t = getDict(locale);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
 const home = `${base}/${locale}`;
 
-const conceptItems = (Object.keys(t.concepts.items) as (keyof typeof t.concepts.items)[]).map(
-  (key) => ({
-    key,
-    title: t.concepts.items[key].title,
-    short: t.concepts.items[key].short,
-    body: t.concepts.items[key].body,
-    example: exField(key, locale),
-  })
+// Sanatan concepts for the orbiting slide (label only — no long descriptions).
+const conceptOrbit = (Object.keys(t.concepts.items) as (keyof typeof t.concepts.items)[]).map(
+  (key) => ({ key, label: t.concepts.items[key].title })
 );
-
-const eras = timeline.map((e) => ({
-  id: e.id,
-  period: e.period,
-  title: tField(e.title, locale),
-  summary: tField(e.summary, locale),
-  evidence: tField(e.evidence, locale),
-}));
 
 const festivalCards = festivals.map((f) => ({
   id: f.id,
@@ -56,35 +38,19 @@ const festivalCards = festivals.map((f) => ({
   source: fField(f.source, locale),
 }));
 
-function formatDate(iso: string): string {
-  try {
-    return new Intl.DateTimeFormat(locale, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    }).format(new Date(iso + 'T00:00:00'));
-  } catch {
-    return iso;
-  }
-}
-
-// "Today" at day granularity, for filtering to genuinely upcoming events.
 const todayIso = new Date().toISOString().slice(0, 10);
 
 function formatFullDate(iso: string): string {
   try {
-    return new Intl.DateTimeFormat(locale, {
-      year: 'numeric',
-      month: 'short',
-      day: 'numeric',
-    }).format(new Date(iso + 'T00:00:00'));
+    return new Intl.DateTimeFormat(locale, { year: 'numeric', month: 'short', day: 'numeric' }).format(
+      new Date(iso + 'T00:00:00')
+    );
   } catch {
     return iso;
   }
 }
 
-// Hero "Living Calendar" panel data.
-// TOP zone: auto-rotating Vishwa Sanatan Sansthanam trust events (latest first).
+// Hero panel: auto-rotating trust events + upcoming festivals (year shown).
 const trustSlides = trustEvents.slice(0, 6).map((e) => ({
   key: `trust-${e.src}`,
   image: e.src,
@@ -92,15 +58,8 @@ const trustSlides = trustEvents.slice(0, 6).map((e) => ({
   title: e.title,
 }));
 
-// Full trust-event list for the gallery section (all photos, newest first).
-const trustGalleryItems = trustEvents.map((e) => ({
-  date: e.date,
-  title: e.title,
-  src: e.src,
-}));
+const trustGalleryItems = trustEvents.map((e) => ({ date: e.date, title: e.title, src: e.src }));
 
-// BOTTOM zone: genuinely UPCOMING festivals — those dated today or later,
-// soonest first, with the year shown. No scriptural source here.
 const upcomingRows = festivalCards
   .filter((f) => f.nextDate && f.nextDate >= todayIso)
   .sort((a, b) => (a.nextDate! < b.nextDate! ? -1 : 1))
@@ -108,18 +67,14 @@ const upcomingRows = festivalCards
   .map((f) => ({
     key: `fest-${f.id}`,
     glyph: f.glyph,
-    dateLabel: formatDate(f.nextDate!),
+    dateLabel: formatFullDate(f.nextDate!),
     name: f.name,
     meaning: f.meaning,
   }));
 
-const logoSrc = `${base}/static/vss-logo.svg`;
+const logoSrc = `${base}/static/vssn-logo.jpg`;
 
-const serviceItems = services.map((s) => ({
-  key: s.key,
-  icon: s.icon,
-  label: sField(s.label, locale),
-}));
+const serviceItems = services.map((s) => ({ key: s.key, icon: s.icon, label: sField(s.label, locale) }));
 
 const aboutBlocks = aboutSections.map((s) => ({
   id: s.id,
@@ -127,17 +82,6 @@ const aboutBlocks = aboutSections.map((s) => ({
   body: s.body ? aField(s.body, locale) : undefined,
   points: s.points ? aField(s.points, locale) : undefined,
 }));
-
-// Festival markers for the Panchang calendar (dated festivals only).
-const festivalMarks = festivalCards
-  .filter((f) => f.nextDate)
-  .map((f) => ({ date: f.nextDate!, name: f.name, glyph: f.glyph }));
-
-// Calendar opens on the month of the soonest upcoming festival (or now).
-const soonest = festivalCards
-  .filter((f) => f.nextDate && f.nextDate >= todayIso)
-  .sort((a, b) => (a.nextDate! < b.nextDate! ? -1 : 1))[0]?.nextDate;
-const calStart = soonest ? new Date(soonest + 'T00:00:00') : new Date();
 ---
 
 <Layout locale={locale}>
@@ -150,7 +94,7 @@ const calStart = soonest ? new Date(soonest + 'T00:00:00') : new Date();
     ctaExplore={t.hero.ctaExplore}
     ctaEvents={t.hero.ctaEvents}
     scroll={t.hero.scroll}
-    exploreHref={`${home}#concepts`}
+    exploreHref={`${home}#about`}
     eventsHref={`${home}#events`}
     trustName={t.trust.name}
     trustTagline={t.trust.tagline}
@@ -161,61 +105,17 @@ const calStart = soonest ? new Date(soonest + 'T00:00:00') : new Date();
     festivals={upcomingRows}
   />
 
-  <section id="concepts" class="scroll-mt-20 bg-gradient-to-b from-[#fff4e2] to-[#fde7d4] py-16 sm:py-24">
-    <Concepts
+  <section id="sanatan" class="scroll-mt-20 py-16 sm:py-24">
+    <SanatanOrbit
       client:visible
       eyebrow={t.concepts.eyebrow}
       title={t.concepts.title}
       lead={t.concepts.lead}
-      readMore={t.concepts.readMore}
-      exampleLabel={t.concepts.exampleLabel}
-      items={conceptItems}
+      concepts={conceptOrbit}
     />
   </section>
 
-  <section id="timeline" class="scroll-mt-20 py-16 sm:py-24">
-    <Timeline
-      client:visible
-      eyebrow={t.timeline.eyebrow}
-      title={t.timeline.title}
-      lead={t.timeline.lead}
-      evidenceLabel={t.timeline.evidenceLabel}
-      eras={eras}
-    />
-  </section>
-
-  <section id="events" class="scroll-mt-20 py-16 sm:py-24">
-    <TrustGallery
-      client:visible
-      eyebrow={t.trust.eyebrow}
-      title={t.trust.eventsHeading}
-      lead={t.trust.lead}
-      noTrustEvents={t.events.noTrustEvents}
-      locale={locale}
-      items={trustGalleryItems}
-    />
-  </section>
-
-  <section id="panchang" class="scroll-mt-20 bg-paper-soft py-12 sm:py-16">
-    <PanchangCalendar
-      client:visible
-      eyebrow={t.calendar.eyebrow}
-      title={t.calendar.title}
-      lead={t.calendar.lead}
-      prev={t.calendar.prev}
-      next={t.calendar.next}
-      today={t.calendar.today}
-      note={t.calendar.note}
-      weekdays={t.calendar.weekdays}
-      legend={t.calendar.legend}
-      locale={locale}
-      festivals={festivalMarks}
-      startYear={calStart.getFullYear()}
-      startMonth={calStart.getMonth()}
-    />
-  </section>
-
-  <section id="services" class="scroll-mt-20 bg-gradient-to-b from-[#fde7d4] to-[#fff4e2] py-16 sm:py-24">
+  <section id="services" class="scroll-mt-20 py-16 sm:py-24">
     <Services
       client:visible
       eyebrow={t.services.eyebrow}
@@ -235,46 +135,45 @@ const calStart = soonest ? new Date(soonest + 'T00:00:00') : new Date();
     />
   </section>
 
+  <section id="events" class="scroll-mt-20 py-16 sm:py-24">
+    <TrustGallery
+      client:visible
+      eyebrow={t.trust.eyebrow}
+      title={t.trust.eventsHeading}
+      lead={t.trust.lead}
+      noTrustEvents={t.events.noTrustEvents}
+      locale={locale}
+      items={trustGalleryItems}
+    />
+  </section>
+
   <section id="about" class="scroll-mt-20 py-16 sm:py-24">
     <div class="container-x">
-      <div class="mx-auto max-w-3xl text-center">
+      <div class="mx-auto max-w-2xl text-center">
         <p class="eyebrow mx-auto mb-3 justify-center">{t.about.eyebrow}</p>
-        <h2 class="heading-serif text-3xl font-semibold text-ink sm:text-4xl">
-          {t.about.title}
-        </h2>
-        <p class="mt-6 text-lg leading-relaxed text-ink-soft">{t.about.lead}</p>
+        <h2 class="heading-serif text-3xl font-bold text-ink sm:text-4xl">{t.about.title}</h2>
+        <p class="mt-4 text-ink-soft">{t.about.lead}</p>
       </div>
 
-      <!-- Trust identity band -->
-      <div class="mx-auto mt-14 max-w-4xl rounded-3xl border border-ink/10 bg-paper-white p-8 shadow-card sm:p-10">
-        <div class="flex flex-col items-center gap-6 text-center sm:flex-row sm:text-left">
-          <VssLogo class="h-24 w-24 shrink-0" />
-          <div>
-            <p class="eyebrow mb-2">{t.trust.eyebrow}</p>
-            <h3 class="heading-serif text-2xl font-semibold text-ink">{t.trust.name}</h3>
-            <p class="mt-1 font-serif text-lg italic text-accent-600">{t.trust.tagline}</p>
-            <p class="mt-3 text-sm leading-relaxed text-ink-soft">{t.trust.lead}</p>
-          </div>
-        </div>
-        <div class="mt-8 grid grid-cols-2 gap-3 border-t border-ink/10 pt-6 sm:grid-cols-5">
-          {
-            [
-              t.trust.values.dharma,
-              t.trust.values.sanskar,
-              t.trust.values.harmony,
-              t.trust.values.seva,
-              t.trust.values.nation,
-            ].map((v) => (
-              <span class="rounded-full border border-accent-500/20 bg-paper px-3 py-2 text-center text-sm font-medium text-ink">
-                {v}
-              </span>
-            ))
-          }
-        </div>
-      </div>
-
-      <!-- Expandable About Us (परिचय + कार्ययोजना एवं उद्देश्य) -->
-      <AboutAccordion client:visible sections={aboutBlocks} defaultOpen="parichay" />
+      <!-- One unified tile: trust header + परिचय + कार्ययोजना एवं उद्देश्य -->
+      <AboutSection
+        client:visible
+        sections={aboutBlocks}
+        showAllLabel={t.about.showAll}
+        showLessLabel={t.about.showLess}
+        trustEyebrow={t.trust.eyebrow}
+        trustName={t.trust.name}
+        trustTagline={t.trust.tagline}
+        trustLead={t.trust.lead}
+        values={[
+          t.trust.values.dharma,
+          t.trust.values.sanskar,
+          t.trust.values.harmony,
+          t.trust.values.seva,
+          t.trust.values.nation,
+        ]}
+        logoSrc={logoSrc}
+      />
     </div>
   </section>
 </Layout>

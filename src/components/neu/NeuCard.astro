@@ -1,0 +1,13 @@
+---
+// Extruded neumorphic card — the default "raised from the surface" container.
+interface Props {
+  class?: string;
+  hover?: boolean;
+  as?: string;
+}
+const { class: className = '', hover = true, as = 'div' } = Astro.props;
+const Tag = as as any;
+---
+<Tag class={`rounded-neu bg-clay shadow-neu transition-all duration-300 ease-out ${hover ? 'hover:-translate-y-1 hover:shadow-neu-hover' : ''} ${className}`}>
+  <slot />
+</Tag>

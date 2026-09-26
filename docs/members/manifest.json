@@ -1,0 +1,422 @@
+[
+  {
+    "bbox_norm" : {
+      "h" : 0.061097539961338043,
+      "w" : 0.054390434175729752,
+      "x" : 0.29361698031425476,
+      "y" : 0.85154151916503906
+    },
+    "col" : 1,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 130,
+      "w" : 130,
+      "x" : 309.0670221708715,
+      "y" : 57.390279866755009
+    },
+    "filename" : "ips_krupa_shankar_singh.png",
+    "index" : 1,
+    "label" : "ips_krupa_shankar_singh",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/ips_krupa_shankar_singh.png",
+    "row" : 1
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.076641224324703217,
+      "w" : 0.068227775394916534,
+      "x" : 0.81801414489746094,
+      "y" : 0.84011894464492798
+    },
+    "col" : 2,
+    "confidence" : 0.96999999999999997,
+    "crop_px" : {
+      "h" : 159.10718169808388,
+      "w" : 159.10718169808388,
+      "x" : 914.02769515663385,
+      "y" : 46.62614918500185
+    },
+    "filename" : "dr_ks_rana.png",
+    "index" : 2,
+    "label" : "dr_ks_rana",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/dr_ks_rana.png",
+    "row" : 1
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.062112003564834595,
+      "w" : 0.055293533951044083,
+      "x" : 0.66149407625198364,
+      "y" : 0.83861714601516724
+    },
+    "col" : 3,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 130,
+      "w" : 130,
+      "x" : 738.53822320327163,
+      "y" : 70.279272586107254
+    },
+    "filename" : "dr_shankar_kumar_mishra.png",
+    "index" : 3,
+    "label" : "dr_shankar_kumar_mishra",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/dr_shankar_kumar_mishra.png",
+    "row" : 1
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.069424472749233246,
+      "w" : 0.061803258955478668,
+      "x" : 0.12074717879295349,
+      "y" : 0.83453512191772461
+    },
+    "col" : 4,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 144.12520542740822,
+      "w" : 144.12520542740822,
+      "x" : 104.75990772992373,
+      "y" : 63.658639378845692
+    },
+    "filename" : "dr_santosh_acharya.png",
+    "index" : 4,
+    "label" : "dr_santosh_acharya",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/dr_santosh_acharya.png",
+    "row" : 1
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.076721616089344025,
+      "w" : 0.068299345672130585,
+      "x" : 0.47034174203872681,
+      "y" : 0.8226591944694519
+    },
+    "col" : 5,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 159.2740750014782,
+      "w" : 159.2740750014782,
+      "x" : 508.59995224326849,
+      "y" : 64.624199889600277
+    },
+    "filename" : "yashraj_singh_gohil.png",
+    "index" : 5,
+    "label" : "yashraj_singh_gohil",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/yashraj_singh_gohil.png",
+    "row" : 1
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.059703022241592407,
+      "w" : 0.053149003535509109,
+      "x" : 0.12229308485984802,
+      "y" : 0.63001751899719238
+    },
+    "col" : 1,
+    "confidence" : 0.94999999999999996,
+    "crop_px" : {
+      "h" : 130,
+      "w" : 130,
+      "x" : 108.57960600778461,
+      "y" : 288.05594673752785
+    },
+    "filename" : "mahant_amreshnand_giri.png",
+    "index" : 6,
+    "label" : "mahant_amreshnand_giri",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/mahant_amreshnand_giri.png",
+    "row" : 2
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.080007702112197876,
+      "w" : 0.071224696934223175,
+      "x" : 0.64933496713638306,
+      "y" : 0.59112334251403809
+    },
+    "col" : 2,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 166.09599325060844,
+      "w" : 166.09599325060844,
+      "x" : 715.60057336837053,
+      "y" : 299.84197644889355
+    },
+    "filename" : "anand_singh.png",
+    "index" : 7,
+    "label" : "anand_singh",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/anand_singh.png",
+    "row" : 2
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.080563187599182129,
+      "w" : 0.071719199419021606,
+      "x" : 0.8304603099822998,
+      "y" : 0.58460861444473267
+    },
+    "col" : 3,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 167.2491774559021,
+      "w" : 167.2491774559021,
+      "x" : 926.50442597270012,
+      "y" : 305.73937511444092
+    },
+    "filename" : "vimlesh_singh.png",
+    "index" : 8,
+    "label" : "vimlesh_singh",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/vimlesh_singh.png",
+    "row" : 2
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.090835064649581909,
+      "w" : 0.080863460898399353,
+      "x" : 0.46042200922966003,
+      "y" : 0.57686686515808105
+    },
+    "col" : 4,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 170,
+      "w" : 170,
+      "x" : 498.99546046555042,
+      "y" : 307.06879541277885
+    },
+    "filename" : "dr_himanshu_shekhar_singh.png",
+    "index" : 9,
+    "label" : "dr_himanshu_shekhar_singh",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/dr_himanshu_shekhar_singh.png",
+    "row" : 2
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.094808198511600494,
+      "w" : 0.084400437772274017,
+      "x" : 0.28664407134056091,
+      "y" : 0.57098120450973511
+    },
+    "col" : 5,
+    "confidence" : 0.95999999999999996,
+    "crop_px" : {
+      "h" : 170,
+      "w" : 170,
+      "x" : 298.43244240432978,
+      "y" : 311.1160546913743
+    },
+    "filename" : "pan_rajan_mishra.png",
+    "index" : 10,
+    "label" : "pan_rajan_mishra",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/pan_rajan_mishra.png",
+    "row" : 2
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.070798203349113464,
+      "w" : 0.063026189804077148,
+      "x" : 0.82741373777389526,
+      "y" : 0.37934747338294983
+    },
+    "col" : 1,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 146.97707462310791,
+      "w" : 146.97707462310791,
+      "x" : 928.0201495885849,
+      "y" : 534.00451777875423
+    },
+    "filename" : "vinod_gupta.png",
+    "index" : 11,
+    "label" : "vinod_gupta",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/vinod_gupta.png",
+    "row" : 3
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.073184564709663391,
+      "w" : 0.065150581300258636,
+      "x" : 0.65007448196411133,
+      "y" : 0.36013880372047424
+    },
+    "col" : 2,
+    "confidence" : 0.69999999999999996,
+    "crop_px" : {
+      "h" : 151.9311563372612,
+      "w" : 151.9311563372612,
+      "x" : 720.00405669957399,
+      "y" : 550.22755448520184
+    },
+    "filename" : "face_12_row3_col2.png",
+    "index" : 12,
+    "label" : "unreliable_nearby_label",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/face_12_row3_col2.png",
+    "row" : 3
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.090080581605434418,
+      "w" : 0.080191805958747864,
+      "x" : 0.46554204821586609,
+      "y" : 0.34935817122459412
+    },
+    "col" : 3,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 170,
+      "w" : 170,
+      "x" : 504.57385109364986,
+      "y" : 543.61439641565084
+    },
+    "filename" : "saroj_pradhan.png",
+    "index" : 13,
+    "label" : "saroj_pradhan",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/saroj_pradhan.png",
+    "row" : 3
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.092493683099746704,
+      "w" : 0.082340002059936523,
+      "x" : 0.29799801111221313,
+      "y" : 0.3470359742641449
+    },
+    "col" : 4,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 170,
+      "w" : 170,
+      "x" : 310.46990215778351,
+      "y" : 544.77243718504906
+    },
+    "filename" : "dr_prachi_chaturvedi.png",
+    "index" : 14,
+    "label" : "dr_prachi_chaturvedi",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/dr_prachi_chaturvedi.png",
+    "row" : 3
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.12251092493534088,
+      "w" : 0.10906204581260681,
+      "x" : 0.074368327856063843,
+      "y" : 0.33259379863739014
+    },
+    "col" : 5,
+    "confidence" : 0.96999999999999997,
+    "crop_px" : {
+      "h" : 170,
+      "w" : 170,
+      "x" : 65.296642988920212,
+      "y" : 544.18446697294712
+    },
+    "filename" : "mahamandaleshwar_bhavani_maa.png",
+    "index" : 15,
+    "label" : "mahamandaleshwar_bhavani_maa",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/mahamandaleshwar_bhavani_maa.png",
+    "row" : 3
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.063461378216743469,
+      "w" : 0.056494776159524918,
+      "x" : 0.47552129626274109,
+      "y" : 0.15812002122402191
+    },
+    "col" : 1,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 131.74582117795944,
+      "w" : 131.74582117795944,
+      "x" : 521.52137535437942,
+      "y" : 775.06205208599567
+    },
+    "filename" : "suman_dwivedi.png",
+    "index" : 16,
+    "label" : "suman_dwivedi",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/suman_dwivedi.png",
+    "row" : 4
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.07660231739282608,
+      "w" : 0.068193145096302032,
+      "x" : 0.10607550293207169,
+      "y" : 0.14204373955726624
+    },
+    "col" : 2,
+    "confidence" : 0.96999999999999997,
+    "crop_px" : {
+      "h" : 159.02641436457634,
+      "w" : 159.02641436457634,
+      "x" : 83.927432827651501,
+      "y" : 771.28878843039274
+    },
+    "filename" : "shrimati_deepa_singh.png",
+    "index" : 17,
+    "label" : "shrimati_deepa_singh",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/shrimati_deepa_singh.png",
+    "row" : 4
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.061822813004255295,
+      "w" : 0.055036090314388275,
+      "x" : 0.6534421443939209,
+      "y" : 0.13717715442180634
+    },
+    "col" : 3,
+    "confidence" : 0.90000000000000002,
+    "crop_px" : {
+      "h" : 130,
+      "w" : 130,
+      "x" : 728.99958101660013,
+      "y" : 798.52407376095653
+    },
+    "filename" : "radhika_bhattai.png",
+    "index" : 18,
+    "label" : "radhika_bhattai",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/radhika_bhattai.png",
+    "row" : 4
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.077545404434204102,
+      "w" : 0.0690326988697052,
+      "x" : 0.81838244199752808,
+      "y" : 0.13391786813735962
+    },
+    "col" : 4,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 160.98425960540771,
+      "w" : 160.98425960540771,
+      "x" : 913.98786100745201,
+      "y" : 778.25505816936493
+    },
+    "filename" : "khushbu_soni.png",
+    "index" : 19,
+    "label" : "khushbu_soni",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/khushbu_soni.png",
+    "row" : 4
+  },
+  {
+    "bbox_norm" : {
+      "h" : 0.092989079654216766,
+      "w" : 0.082781016826629639,
+      "x" : 0.29403197765350342,
+      "y" : 0.10577958822250366
+    },
+    "col" : 5,
+    "confidence" : 0.97999999999999998,
+    "crop_px" : {
+      "h" : 170,
+      "w" : 170,
+      "x" : 306.10261875391006,
+      "y" : 794.9394550845027
+    },
+    "filename" : "mamta_singh.png",
+    "index" : 20,
+    "label" : "mamta_singh",
+    "path" : "\/Users\/power\/.openclaw\/workspace\/output\/faces\/mamta_singh.png",
+    "row" : 4
+  }
+]

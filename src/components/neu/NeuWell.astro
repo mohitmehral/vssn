@@ -1,0 +1,11 @@
+---
+// Inset "drilled" icon well — content appears carved into the surface.
+interface Props {
+  class?: string;
+  size?: string; // tailwind size classes, e.g. 'h-14 w-14'
+}
+const { class: className = '', size = 'h-14 w-14' } = Astro.props;
+---
+<div class={`grid place-items-center rounded-2xl bg-clay shadow-neu-inset-deep ${size} ${className}`}>
+  <slot />
+</div>

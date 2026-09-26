@@ -29,13 +29,13 @@ const pageDesc = description ?? t.meta.description;
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
-    <meta name="theme-color" content="#f6efe0" />
+    <meta name="theme-color" content="#f2e7d3" />
 
-    <!-- Fonts: Fraunces (editorial serif) + Inter (clean modern sans) -->
+    <!-- Fonts: Plus Jakarta Sans (display) + DM Sans (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@300;400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;600;700;800&family=DM+Sans:wght@400;500;700&family=Tiro+Devanagari+Hindi&display=swap"
       rel="stylesheet"
     />
 
@@ -47,7 +47,7 @@ const pageDesc = description ?? t.meta.description;
       pathAfterLocale={pathAfterLocale}
     />
   </head>
-  <body class={`bg-manuscript min-h-screen ${meta.font}`}>
+  <body class={`bg-clay min-h-screen ${meta.font}`}>
     <Nav locale={locale} />
     <main>
       <slot />

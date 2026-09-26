@@ -4,9 +4,11 @@
 
 @layer base {
   :root {
-    --accent: #a13d27;
-    --ink: #211a13;
-    --paper: #f6efe0;
+    --clay: #f2e7d3;
+    --ink: #4a2c1a;
+    --saffron: #c2410c;
+    --maroon: #a13d27;
+    --gold: #d4a017;
   }
 
   html {
@@ -18,33 +20,33 @@
   }
 
   body {
-    @apply bg-paper text-ink font-sans antialiased;
+    /* The page surface everything is molded from — flat warm clay, no gradient. */
+    @apply bg-clay text-ink font-sans antialiased;
     overflow-x: hidden;
     width: 100%;
     max-width: 100%;
     position: relative;
   }
 
-  /* RTL support (Arabic) */
   [dir='rtl'] body {
     direction: rtl;
   }
 
   ::selection {
-    background: rgba(161, 61, 39, 0.16);
-    color: #211a13;
+    background: rgba(224, 122, 31, 0.22);
+    color: #4a2c1a;
   }
 
-  /* Quiet scrollbar that matches the paper theme */
   ::-webkit-scrollbar {
-    width: 10px;
+    width: 12px;
   }
   ::-webkit-scrollbar-track {
-    background: #efe6d1;
+    background: #efe1c9;
   }
   ::-webkit-scrollbar-thumb {
-    background: #cbb994;
+    background: #d8c4a0;
     border-radius: 8px;
+    border: 3px solid #efe1c9;
   }
 }
 
@@ -53,43 +55,65 @@
     @apply mx-auto w-full max-w-7xl px-5 sm:px-8;
   }
 
+  .font-display {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+  }
+
   .heading-serif {
     @apply font-display tracking-tight;
   }
 
   .eyebrow {
-    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-accent-500;
+    @apply inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.22em] text-saffron-deep;
   }
-
   .eyebrow::before {
     content: '';
-    @apply block h-px w-6 bg-accent-500/60;
+    @apply block h-px w-6 bg-saffron-deep/50;
   }
 
+  /* ---- Neumorphic primitives (utility classes) ---- */
+  .neu {
+    @apply bg-clay shadow-neu;
+  }
+  .neu-inset {
+    @apply bg-clay shadow-neu-inset;
+  }
+
+  /* Extruded card */
+  .neu-card {
+    @apply rounded-neu bg-clay shadow-neu transition-all duration-300 ease-out;
+  }
+  .neu-card:hover {
+    @apply -translate-y-1 shadow-neu-hover;
+  }
+
+  /* Icon well — "drilled" into the surface */
+  .neu-well {
+    @apply grid place-items-center rounded-2xl bg-clay shadow-neu-inset-deep;
+  }
+
+  /* Buttons */
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full
-           bg-ink px-7 py-3 font-semibold text-paper-white shadow-card
-           transition-all duration-300 hover:bg-accent-600 hover:shadow-card-lg;
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-saffron-deep px-7 py-3
+           font-semibold text-clay shadow-neu transition-all duration-300 ease-out
+           hover:-translate-y-0.5 hover:shadow-neu-hover
+           active:translate-y-[1px] active:shadow-neu-inset
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron-deep focus-visible:ring-offset-2 focus-visible:ring-offset-clay;
+  }
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-2xl bg-clay px-7 py-3
+           font-semibold text-ink shadow-neu transition-all duration-300 ease-out
+           hover:-translate-y-0.5 hover:shadow-neu-hover
+           active:translate-y-[1px] active:shadow-neu-inset
+           focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron-deep focus-visible:ring-offset-2 focus-visible:ring-offset-clay;
   }
 
-  .btn-ghost {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border
-           border-ink/20 px-7 py-3 font-medium text-ink
-           transition-all duration-300 hover:border-accent-500 hover:text-accent-600;
-  }
-
-  .card-sacred {
-    @apply relative overflow-hidden rounded-2xl border border-ink/10
-           bg-paper-white p-6 shadow-card transition-all duration-500
-           hover:-translate-y-0.5 hover:shadow-card-lg;
-  }
-
-  .glass {
-    @apply border border-ink/10 bg-paper-white/70 backdrop-blur-md;
+  /* Pill / chip */
+  .neu-chip {
+    @apply inline-flex items-center gap-1.5 rounded-full bg-clay px-3.5 py-1.5 text-sm font-medium text-ink shadow-neu-inset-sm;
   }
 }
 
-/* Reduced motion respect */
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
@@ -99,10 +123,4 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-}
-
-/* Subtle paper grain backdrop utility */
-.bg-manuscript {
-  background-color: theme('colors.paper.DEFAULT');
-  background-image: theme('backgroundImage.paper-grain');
 }

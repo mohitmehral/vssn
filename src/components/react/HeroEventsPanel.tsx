@@ -55,13 +55,15 @@ export default function HeroEventsPanel({
   const active = trustSlides[index];
 
   return (
-    <div className="w-full max-w-md overflow-hidden rounded-3xl border border-ink/10 bg-paper-white shadow-card-lg">
+    <div className="w-full max-w-md overflow-hidden rounded-neu bg-clay shadow-neu">
       {/* Brand header */}
-      <div className="flex items-center gap-3 border-b border-ink/10 bg-paper px-5 py-3.5">
-        <img src={logoSrc} alt={trustName} className="h-11 w-11 shrink-0" loading="eager" />
+      <div className="flex items-center gap-3 px-5 py-4">
+        <div className="grid h-12 w-12 shrink-0 place-items-center overflow-hidden rounded-full bg-clay shadow-neu-inset-deep">
+          <img src={logoSrc} alt={trustName} className="h-full w-full rounded-full object-cover" loading="eager" />
+        </div>
         <div className="min-w-0">
-          <p className="heading-serif truncate text-sm font-semibold text-ink">{trustName}</p>
-          <p className="truncate text-[11px] text-accent-600">{trustTagline}</p>
+          <p className="heading-serif truncate text-sm font-bold text-ink">{trustName}</p>
+          <p className="truncate text-[11px] text-saffron-deep">{trustTagline}</p>
         </div>
       </div>
 
@@ -82,7 +84,7 @@ export default function HeroEventsPanel({
                 aria-label={`Event ${i + 1}`}
                 onClick={() => setIndex(i)}
                 className={`h-1.5 rounded-full transition-all duration-300 ${
-                  i === index ? 'w-4 bg-accent-500' : 'w-1.5 bg-ink/15'
+                  i === index ? 'w-4 bg-saffron-deep' : 'w-1.5 bg-ink/15'
                 }`}
               />
             ))}
@@ -98,14 +100,14 @@ export default function HeroEventsPanel({
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.99 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute inset-0 mx-5 overflow-hidden rounded-2xl border border-ink/10"
+                className="absolute inset-0 mx-5 overflow-hidden rounded-2xl shadow-neu-inset"
               >
                 <img src={active.image} alt={active.title} className="h-full w-full object-cover" loading="lazy" />
-                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/90 via-ink/40 to-transparent p-4">
-                  <span className="rounded-full bg-paper-white/90 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-ink-soft">
+                <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-maroon-deep/90 via-maroon-deep/40 to-transparent p-4">
+                  <span className="rounded-full bg-clay/95 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-ink-soft">
                     {active.dateLabel}
                   </span>
-                  <p className="heading-serif mt-1.5 text-sm font-semibold text-paper-white">{active.title}</p>
+                  <p className="heading-serif mt-1.5 text-sm font-bold text-clay">{active.title}</p>
                 </figcaption>
               </motion.figure>
             )}
@@ -114,20 +116,20 @@ export default function HeroEventsPanel({
       </div>
 
       {/* BOTTOM zone — upcoming festivals, no source */}
-      <div className="mt-4 border-t border-ink/10 px-5 py-4">
+      <div className="mt-2 px-5 pb-5 pt-3">
         <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-faint">
           {upcomingHeading}
         </span>
         <ul className="mt-2.5 space-y-2.5">
           {festivals.map((f) => (
             <li key={f.key} className="flex items-start gap-3">
-              <span className="mt-0.5 grid h-8 w-8 shrink-0 place-items-center rounded-lg bg-paper text-base text-accent-500">
+              <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay text-base text-saffron-deep shadow-neu-inset-sm">
                 {f.glyph}
               </span>
               <div className="min-w-0 flex-1">
                 <div className="flex items-baseline justify-between gap-2">
-                  <p className="heading-serif truncate text-sm font-semibold text-ink">{f.name}</p>
-                  <span className="shrink-0 text-[11px] font-medium text-accent-600">{f.dateLabel}</span>
+                  <p className="heading-serif truncate text-sm font-bold text-ink">{f.name}</p>
+                  <span className="shrink-0 text-[11px] font-medium text-saffron-deep">{f.dateLabel}</span>
                 </div>
                 <p className="truncate text-xs text-ink-soft">{f.meaning}</p>
               </div>

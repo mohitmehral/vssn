@@ -3,8 +3,8 @@ import react from '@astrojs/react';
 import tailwind from '@astrojs/tailwind';
 import sitemap from '@astrojs/sitemap';
 
-// The 10 supported languages. English + Hindi are primary.
-const locales = ['en', 'hi', 'zh', 'es', 'ar', 'bn', 'pt', 'ru', 'fr', 'ja'];
+// The 10 supported languages. Hindi is the default/primary; English next.
+const locales = ['hi', 'en', 'zh', 'es', 'ar', 'bn', 'pt', 'ru', 'fr', 'ja'];
 
 // Right-to-left languages
 const rtlLocales = ['ar'];
@@ -24,7 +24,7 @@ export default defineConfig({
     sitemap(),
   ],
   i18n: {
-    defaultLocale: 'en',
+    defaultLocale: 'hi',
     locales,
     routing: {
       prefixDefaultLocale: true,

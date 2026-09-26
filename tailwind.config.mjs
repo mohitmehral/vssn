@@ -5,74 +5,81 @@ export default {
   theme: {
     extend: {
       colors: {
-        // "Living Manuscript" palette — warm ivory paper, ink type,
-        // one deep accent (rubrication red used by old manuscript scribes),
-        // and a quiet indigo-ink for structure. No gold, no purple-night.
-        paper: {
-          DEFAULT: '#f6efe0', // primary page background — warm ivory
-          soft: '#efe6d1', // secondary surfaces / alt sections
-          deep: '#e4d8ba', // borders, hairlines on paper
-          white: '#fbf7ee', // card surfaces
+        // Warm Neumorphism (Soft UI) — the whole surface is molded from one
+        // warm "cream clay"; saffron/maroon/gold are the only real colours,
+        // used sparingly. Tuned to the VSS logo.
+        clay: {
+          DEFAULT: '#f2e7d3', // base surface — everything is molded from this
+          soft: '#efe1c9',
+          deep: '#e7d6ba',
         },
         ink: {
-          DEFAULT: '#211a13', // primary text — warm near-black
-          soft: '#4a4038', // secondary text
-          faint: '#8b8072', // tertiary / captions
+          DEFAULT: '#4a2c1a', // primary text — deep warm brown/maroon (AAA on clay)
+          soft: '#7a5b43', // secondary
+          faint: '#9c8265', // tertiary / captions (AA)
         },
-        accent: {
-          50: '#fbeae5',
-          100: '#f3cfc3',
-          200: '#e6a793',
-          300: '#d47c63',
-          400: '#bd5940',
-          500: '#a13d27', // primary accent — rubrication red
-          600: '#87301e',
-          700: '#6b2517',
-          800: '#4f1b11',
-          900: '#38130b',
+        saffron: {
+          light: '#f59e42',
+          DEFAULT: '#e07a1f',
+          deep: '#c2410c',
         },
-        study: {
-          DEFAULT: '#2a2540', // deep indigo-ink, used sparingly for structure
-          light: '#3d3660',
+        maroon: {
+          light: '#b5482f',
+          DEFAULT: '#a13d27',
+          deep: '#7a2718',
+        },
+        gold: {
+          light: '#e6c36a',
+          DEFAULT: '#d4a017',
+          deep: '#a97e12',
         },
       },
       fontFamily: {
-        display: ['"Fraunces"', '"Marcellus"', 'serif'],
-        sans: ['"Inter"', 'system-ui', 'sans-serif'],
-        deva: ['"Tiro Devanagari Hindi"', '"Inter"', 'serif'],
-        serif: ['"Fraunces"', 'serif'],
-      },
-      backgroundImage: {
-        'paper-grain':
-          'radial-gradient(circle at 20% 10%, rgba(161,61,39,0.05) 0%, transparent 45%), radial-gradient(circle at 85% 60%, rgba(42,37,64,0.05) 0%, transparent 40%)',
+        display: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+        sans: ['"DM Sans"', 'system-ui', 'sans-serif'],
+        deva: ['"Tiro Devanagari Hindi"', '"DM Sans"', 'serif'],
       },
       boxShadow: {
-        card: '0 1px 2px rgba(33, 26, 19, 0.04), 0 8px 24px -8px rgba(33, 26, 19, 0.10)',
-        'card-lg': '0 12px 40px -12px rgba(33, 26, 19, 0.22)',
-        underline: 'inset 0 -2px 0 0 rgba(161,61,39,0.25)',
+        // Dual opposing warm shadows: light warm-white top-left, warm sand
+        // bottom-right. rgba for smooth blending (never opaque hex).
+        neu: '9px 9px 18px rgba(190,164,120,0.55), -9px -9px 18px rgba(255,250,240,0.9)',
+        'neu-hover': '12px 12px 22px rgba(190,164,120,0.6), -12px -12px 22px rgba(255,250,240,0.95)',
+        'neu-sm': '5px 5px 10px rgba(190,164,120,0.5), -5px -5px 10px rgba(255,250,240,0.85)',
+        'neu-inset': 'inset 6px 6px 10px rgba(190,164,120,0.55), inset -6px -6px 10px rgba(255,250,240,0.9)',
+        'neu-inset-deep': 'inset 10px 10px 20px rgba(190,164,120,0.62), inset -10px -10px 20px rgba(255,250,240,0.92)',
+        'neu-inset-sm': 'inset 3px 3px 6px rgba(190,164,120,0.5), inset -3px -3px 6px rgba(255,250,240,0.85)',
+      },
+      borderRadius: {
+        neu: '32px',
       },
       keyframes: {
+        float: {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '50%': { transform: 'translateY(-12px)' },
+        },
         'float-slow': {
           '0%, 100%': { transform: 'translateY(0)' },
-          '50%': { transform: 'translateY(-10px)' },
+          '50%': { transform: 'translateY(-8px)' },
+        },
+        'spin-slow': {
+          from: { transform: 'rotate(0deg)' },
+          to: { transform: 'rotate(360deg)' },
+        },
+        'spin-rev-slow': {
+          from: { transform: 'rotate(360deg)' },
+          to: { transform: 'rotate(0deg)' },
         },
         'fade-up': {
           from: { opacity: '0', transform: 'translateY(20px)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
-        'ripple': {
-          '0%': { transform: 'scale(0.3)', opacity: '0.9' },
-          '100%': { transform: 'scale(2.6)', opacity: '0' },
-        },
-        'draw': {
-          from: { strokeDashoffset: '1' },
-          to: { strokeDashoffset: '0' },
-        },
       },
       animation: {
-        'float-slow': 'float-slow 7s ease-in-out infinite',
-        'fade-up': 'fade-up 0.7s ease forwards',
-        ripple: 'ripple 2.4s cubic-bezier(0.2,0.6,0.4,1) infinite',
+        float: 'float 3s ease-in-out infinite',
+        'float-slow': 'float-slow 4.5s ease-in-out infinite',
+        'spin-slow': 'spin-slow 40s linear infinite',
+        'spin-rev-slow': 'spin-rev-slow 40s linear infinite',
+        'fade-up': 'fade-up 0.7s ease-out forwards',
       },
     },
   },

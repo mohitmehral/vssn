@@ -125,10 +125,19 @@ export const zh: UISchema = {
     eyebrow: '我们的宗旨',
     title: '为何存在',
     lead: '以清晰、优美与诚实呈现萨那坦达摩的深度——不带杂音，基于典据，向每一位求道者敞开。',
+    showAll: '查看全部目标',
+    showLess: '收起',
   },
   footer: {
     tagline: '萨那坦达摩——永恒之道，为今日讲述。',
     rights: '以虔敬制作。知识自由分享。',
     sources: '来源与参考',
+  },
+  notFound: {
+    title: '此路不在地图上',
+    lead: '未找到您要访问的页面。返回首页，或与永恒静候片刻。',
+    home: '返回首页',
+    chantPlay: '播放唵颂',
+    chantPause: '暂停',
   },
 };

@@ -16,18 +16,18 @@ export const en = {
     language: 'Language',
   },
   hero: {
-    eyebrow: 'The Eternal Order',
-    title: 'Sanatan Dharma',
-    subtitle: 'The timeless way of living, understood anew',
-    lead: 'Ancient wisdom, told for the modern mind. Explore the civilization, scriptures and living traditions of Sanatan Dharma through motion, light and clarity.',
-    ctaExplore: 'Begin the Journey',
-    ctaEvents: 'Upcoming Events',
+    eyebrow: 'Our Sansthan',
+    title: 'Vishwa Sanatan Sansthanam',
+    subtitle: 'Social harmony is the true identity of Sanatan.',
+    lead: 'A religious and cultural trust inspired by Adi Guru Shankaracharya and Swami Vivekananda — working to carry Sanatan Dharma and social harmony to every corner of the world, guided by "Yato Dharmastato Jayah".',
+    ctaExplore: 'About the Sansthan',
+    ctaEvents: 'Our Events',
     scroll: 'Scroll to explore',
   },
   concepts: {
-    eyebrow: 'Core Wisdom',
+    eyebrow: 'Sanatan Dharma',
     title: 'Concepts that shape a lifetime',
-    lead: 'Not rules, but a way of seeing. Each idea below is a doorway into a deeper understanding of self and cosmos.',
+    lead: 'The eternal way of living, understood anew — the core ideas of Sanatan Dharma, each a doorway into a deeper understanding of self and cosmos.',
     items: {
       vedas: {
         title: 'The Vedas',
@@ -121,14 +121,23 @@ export const en = {
     lead: 'The office-bearers and guides of Vishwa Sanatan Sansthanam.',
   },
   about: {
-    eyebrow: 'Our Purpose',
-    title: 'Why this exists',
-    lead: 'To present the depth of Sanatan Dharma with clarity, beauty and honesty — free from noise, grounded in sources, open to every seeker.',
+    eyebrow: 'About the Sansthan',
+    title: 'About & Purpose',
+    lead: 'Who we are, why we exist, and the work we have set out to do.',
+    showAll: 'Show all objectives',
+    showLess: 'Show fewer',
   },
   footer: {
     tagline: 'Sanatan Dharma — the eternal way, told for today.',
     rights: 'Made with devotion. Knowledge shared freely.',
     sources: 'Sources & references',
+  },
+  notFound: {
+    title: 'This path is not on the map',
+    lead: 'The page you seek could not be found. Return home, or pause a moment with the eternal.',
+    home: 'Return home',
+    chantPlay: 'Play Om chant',
+    chantPause: 'Pause chant',
   },
 } as const;
 

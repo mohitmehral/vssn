@@ -1,17 +1,13 @@
 ---
-// Vishwa Sanatan Sansthanam emblem.
-//
-// By default this uses the recreated scalable SVG at
-// /static/vss-logo.svg. If you drop a real logo file into
-// public/static/ named  vss-logo.png  (transparent background recommended),
-// change LOGO_FILE below to 'vss-logo.png' and it will be used everywhere.
+// Vishwa Sanatan Sansthanam emblem — the official trust logo.
+// Source of truth: public/static/vssn-logo.jpg (real emblem, square-cropped).
 interface Props {
   class?: string;
   alt?: string;
 }
 const { class: className, alt = 'Vishwa Sanatan Sansthanam' } = Astro.props;
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const LOGO_FILE = 'vss-logo.svg';
+const LOGO_FILE = 'vssn-logo.jpg';
 const src = `${base}/static/${LOGO_FILE}`;
 ---
 
