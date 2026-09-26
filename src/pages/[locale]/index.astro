@@ -13,6 +13,7 @@ import { aboutSections, aField } from '../../data/aboutUs';
 import AboutSection from '../../components/react/AboutSection.tsx';
 import { members } from '../../data/members';
 import Members from '../../components/react/Members.tsx';
+import SacredSounds from '../../components/react/SacredSounds.tsx';
 
 export function getStaticPaths() {
   return locales.map((locale) => ({ params: { locale } }));
@@ -112,6 +113,7 @@ const aboutBlocks = aboutSections.map((s) => ({
       title={t.concepts.title}
       lead={t.concepts.lead}
       concepts={conceptOrbit}
+      omLoopSrc={`${base}/static/om-chanting-1.mp3`}
     />
   </section>
 
@@ -144,6 +146,20 @@ const aboutBlocks = aboutSections.map((s) => ({
       noTrustEvents={t.events.noTrustEvents}
       locale={locale}
       items={trustGalleryItems}
+    />
+  </section>
+
+  <section id="sounds" class="scroll-mt-20 py-16 sm:py-24">
+    <SacredSounds
+      client:visible
+      eyebrow={t.sounds.eyebrow}
+      title={t.sounds.title}
+      lead={t.sounds.lead}
+      download={t.sounds.download}
+      omTitle={t.sounds.tracks.omChanting}
+      shivaTitle={t.sounds.tracks.omNamahShivaya}
+      omSrc={`${base}/static/om-chanting-1.mp3`}
+      shivaSrc={`${base}/static/om-namah-shivaya-2.mp3`}
     />
   </section>
 

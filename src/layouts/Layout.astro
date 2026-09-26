@@ -5,6 +5,7 @@ import Nav from '../components/Nav.astro';
 import Footer from '../components/Footer.astro';
 import { getDir, localeMeta, type Locale } from '../i18n/config';
 import { getDict } from '../i18n/utils';
+import GuruAssistant from '../components/react/GuruAssistant.tsx';
 
 interface Props {
   locale: Locale;
@@ -53,5 +54,14 @@ const pageDesc = description ?? t.meta.description;
       <slot />
     </main>
     <Footer locale={locale} />
+
+    <GuruAssistant
+      client:idle
+      locale={locale}
+      t={t.assistant}
+      phoneTel="+917388735905"
+      email="vishwasanatansansthanam@gmail.com"
+      omSrc={`${import.meta.env.BASE_URL.replace(/\/$/, '')}/static/om-chanting-1.mp3`}
+    />
   </body>
 </html>

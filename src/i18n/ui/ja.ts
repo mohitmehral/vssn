@@ -141,4 +141,31 @@ export const ja: UISchema = {
     chantPlay: 'オームの詠唱を再生',
     chantPause: '一時停止',
   },
+  assistant: {
+    open: 'グル・ジーに尋ねる',
+    title: 'Guru Ji',
+    mantra: 'ॐ सर्वे भवन्तु सुखिनः',
+    greeting: 'ナマステ 🙏 私は協会の案内役です。どのようにお手伝いしましょうか？',
+    placeholder: 'サービス、行事、サナータナ・ダルマについてお尋ねください…',
+    send: '送信',
+    close: '閉じる',
+    chips: {
+      services: '私たちのサービス',
+      moksha: 'モークシャとは？',
+      contact: 'お問い合わせ',
+    },
+    outOfScope:
+      'Vishwa Sanatan Sansthanam とサナータナ・ダルマについてのみご案内できます。その点についてお尋ねください。',
+    routeIntro: 'よいご質問ですが、まだ完全な回答がありません。アーチャーリヤ・ジーに直接ご連絡ください：',
+    callAcharya: 'アーチャーリヤ・ジーに電話 / WhatsApp',
+    emailQuery: 'ご質問をメールで送る',
+    chantNote: 'ॐ … 平安へと戻りましょう。🙏',
+  },
+  sounds: {
+    eyebrow: '聖なる響き',
+    title: '一緒に唱えるか、持ち帰りましょう',
+    lead: '瞑想のためにこれらのマントラを再生、またはダウンロードして保存できます。',
+    download: 'ダウンロード',
+    tracks: { omChanting: 'オームの詠唱', omNamahShivaya: 'オーム・ナマ・シヴァーヤ' },
+  },
 };

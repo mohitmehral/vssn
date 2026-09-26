@@ -40,10 +40,15 @@ const trust = {
           </div>
         </div>
         <p class="mt-4 max-w-md text-sm leading-relaxed text-ink-soft">{t.footer.tagline}</p>
-        <p class="mt-5 inline-flex items-center gap-2 rounded-full bg-clay px-4 py-2 text-xs font-medium text-ink shadow-neu-inset-sm">
-          <span class="font-semibold text-saffron-deep">Reg. No.</span>
-          <span class="tracking-wide">{trust.regNo}</span>
-        </p>
+        <div class="mt-5 flex flex-wrap items-center gap-2">
+          <span class="inline-flex items-center gap-2 rounded-full bg-clay px-4 py-2 text-xs font-medium text-ink shadow-neu-inset-sm">
+            <span class="font-semibold text-saffron-deep">Reg. No.</span>
+            <span class="tracking-wide">{trust.regNo}</span>
+          </span>
+          <span class="inline-flex items-center gap-1.5 rounded-full bg-clay px-4 py-2 text-xs font-medium text-ink shadow-neu-inset-sm">
+            <span aria-hidden="true">🇮🇳</span> Registered in India
+          </span>
+        </div>
       </div>
 
       <!-- Contact -->
