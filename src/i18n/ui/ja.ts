@@ -117,6 +117,11 @@ export const ja: UISchema = {
     title: '特別なサービス',
     lead: '協会が提供する導きと実践——心身と魂の健やかさのために。',
   },
+  members: {
+    eyebrow: '私たちの仲間',
+    title: '協会メンバー',
+    lead: 'Vishwa Sanatan Sansthanam の役員と導き手。',
+  },
   about: {
     eyebrow: '私たちの目的',
     title: 'なぜ存在するのか',

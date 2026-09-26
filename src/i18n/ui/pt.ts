@@ -117,6 +117,11 @@ export const pt: UISchema = {
     title: 'Serviços especiais',
     lead: 'Orientação e práticas oferecidas pela fundação, para o bem-estar do corpo, da mente e do espírito.',
   },
+  members: {
+    eyebrow: 'Nossa equipe',
+    title: 'Membros da fundação',
+    lead: 'Os dirigentes e guias da Vishwa Sanatan Sansthanam.',
+  },
   about: {
     eyebrow: 'Nosso propósito',
     title: 'Por que isto existe',

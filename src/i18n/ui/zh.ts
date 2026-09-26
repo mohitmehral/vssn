@@ -116,6 +116,11 @@ export const zh: UISchema = {
     title: '特别服务',
     lead: '学会提供的指导与修习——助益身、心、灵的安康。',
   },
+  members: {
+    eyebrow: '我们的团队',
+    title: '学会成员',
+    lead: 'Vishwa Sanatan Sansthanam 的负责人与导师。',
+  },
   about: {
     eyebrow: '我们的宗旨',
     title: '为何存在',

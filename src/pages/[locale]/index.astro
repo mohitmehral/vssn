@@ -16,6 +16,8 @@ import { services, sField } from '../../data/services';
 import Services from '../../components/react/Services.tsx';
 import { aboutSections, aField } from '../../data/aboutUs';
 import AboutAccordion from '../../components/react/AboutAccordion.tsx';
+import { members } from '../../data/members';
+import Members from '../../components/react/Members.tsx';
 
 export function getStaticPaths() {
   return locales.map((locale) => ({ params: { locale } }));
@@ -220,6 +222,16 @@ const calStart = soonest ? new Date(soonest + 'T00:00:00') : new Date();
       title={t.services.title}
       lead={t.services.lead}
       items={serviceItems}
+    />
+  </section>
+
+  <section id="members" class="scroll-mt-20 py-16 sm:py-24">
+    <Members
+      client:visible
+      eyebrow={t.members.eyebrow}
+      title={t.members.title}
+      lead={t.members.lead}
+      items={members}
     />
   </section>
 

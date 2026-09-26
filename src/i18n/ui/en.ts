@@ -115,6 +115,11 @@ export const en = {
     title: 'Special Services',
     lead: 'Guidance and practices offered by the Sansthan — for wellbeing of body, mind and spirit.',
   },
+  members: {
+    eyebrow: 'Our People',
+    title: 'Trust Members',
+    lead: 'The office-bearers and guides of Vishwa Sanatan Sansthanam.',
+  },
   about: {
     eyebrow: 'Our Purpose',
     title: 'Why this exists',
