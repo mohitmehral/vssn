@@ -44,7 +44,7 @@ export default function Hero(props: Props) {
         <motion.div variants={container} initial="hidden" animate="show" className="relative min-w-0 max-w-2xl">
           {/* eyebrow + waving flag on one line — the dhwaj introduces the name */}
           <motion.div variants={item} className="mb-3 flex items-center gap-3">
-            <WavingFlag className="h-12 w-14 shrink-0" />
+            <WavingFlag className="h-16 w-[4.5rem] shrink-0" />
             <p className="eyebrow">{props.eyebrow}</p>
           </motion.div>
 

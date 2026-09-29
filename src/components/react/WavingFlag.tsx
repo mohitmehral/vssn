@@ -17,15 +17,15 @@ export default function WavingFlag({ className = 'h-24 w-28' }: Props) {
   // Three ripple keyframes — the fly edge and tails sway; hoist stays at staff.
   // Path: start top of hoist → sweep out to upper tail → notch → lower tail →
   // back down the hoist.
-  const wave1 =
-    'M96 26 C70 22 48 28 22 24 L40 40 L20 52 C46 50 70 58 96 56 Z';
-  const wave2 =
-    'M96 26 C70 30 48 22 22 30 L42 42 L20 60 C46 52 70 50 96 56 Z';
-  const wave3 =
-    'M96 26 C70 24 48 30 22 22 L38 40 L20 50 C46 54 70 54 96 56 Z';
+  // Four strongly-curved keyframes form a travelling wave: the S-curve moves
+  // along the cloth and the tails swing up and down.
+  const wave1 = 'M96 26 C76 14 50 38 20 22 L40 40 L18 56 C48 44 72 68 96 56 Z';
+  const wave2 = 'M96 26 C76 38 50 14 20 32 L42 44 L18 66 C48 70 72 46 96 56 Z';
+  const wave3 = 'M96 26 C76 20 50 30 22 16 L38 36 L20 48 C48 58 72 50 96 56 Z';
+  const wave4 = 'M96 26 C76 34 50 22 20 28 L40 42 L18 60 C48 56 72 60 96 56 Z';
 
-  const foldA = 'M96 34 C74 32 56 36 34 34';
-  const foldB = 'M96 34 C74 38 56 32 34 38';
+  const foldA = 'M96 36 C76 26 54 46 30 32';
+  const foldB = 'M96 36 C76 46 54 26 30 42';
 
   return (
     <svg viewBox="0 0 120 120" className={className} role="img" aria-label="Sanatan Dharma flag">
@@ -48,8 +48,8 @@ export default function WavingFlag({ className = 'h-24 w-28' }: Props) {
         strokeWidth="1.2"
         strokeLinejoin="round"
         initial={{ d: wave1 }}
-        animate={reduce ? { d: wave1 } : { d: [wave1, wave2, wave3, wave1] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+        animate={reduce ? { d: wave1 } : { d: [wave1, wave2, wave3, wave4, wave1] }}
+        transition={{ duration: 2.2, repeat: Infinity, ease: 'easeInOut' }}
       />
 
       {/* soft highlight fold that ripples with the flag for depth */}
@@ -61,7 +61,7 @@ export default function WavingFlag({ className = 'h-24 w-28' }: Props) {
         strokeLinecap="round"
         initial={{ d: foldA }}
         animate={reduce ? { d: foldA } : { d: [foldA, foldB, foldA] }}
-        transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+        transition={{ duration: 1.1, repeat: Infinity, ease: 'easeInOut' }}
       />
     </svg>
   );

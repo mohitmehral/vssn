@@ -161,7 +161,8 @@ function Player({
     a.preload = 'metadata';
     a.addEventListener('loadedmetadata', () => setDuration(a.duration || 0));
     a.addEventListener('timeupdate', () => setCurrent(a.currentTime));
-    a.addEventListener('ended', onPause);
+    // Loop continuously so a mantra can run for a long meditation session.
+    a.loop = true;
     audioRef.current = a;
     return () => {
       a.pause();
