@@ -20,8 +20,8 @@ export const en = {
     title: 'Vishwa Sanatan Sansthanam',
     subtitle: 'Social harmony is the true identity of Sanatan.',
     lead: 'A religious and cultural trust inspired by Adi Guru Shankaracharya and Swami Vivekananda — working to carry Sanatan Dharma and social harmony to every corner of the world, guided by "Yato Dharmastato Jayah".',
-    ctaExplore: 'About the Sansthan',
-    ctaEvents: 'Our Events',
+    ctaExplore: 'Objectives & Plans',
+    ctaEvents: 'Our Services',
     scroll: 'Scroll to explore',
   },
   concepts: {

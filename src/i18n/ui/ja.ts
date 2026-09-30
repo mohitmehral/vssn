@@ -22,8 +22,8 @@ export const ja: UISchema = {
     title: 'サナータナ・ダルマ',
     subtitle: '時を超えた生き方を、あらためて理解する',
     lead: '現代の心に語りかける古代の叡智。動き、光、明晰さを通して、サナータナ・ダルマの文明、聖典、生きた伝統を探究しましょう。',
-    ctaExplore: '旅を始める',
-    ctaEvents: '今後のイベント',
+    ctaExplore: '目的と計画',
+    ctaEvents: '私たちのサービス',
     scroll: 'スクロールして探索',
   },
   concepts: {

@@ -22,8 +22,8 @@ export const pt: UISchema = {
     title: 'Sanatan Dharma',
     subtitle: 'O modo atemporal de viver, compreendido de novo',
     lead: 'Sabedoria antiga contada para a mente moderna. Explore a civilização, as escrituras e as tradições vivas do Sanatan Dharma através do movimento, da luz e da clareza.',
-    ctaExplore: 'Começar a jornada',
-    ctaEvents: 'Próximos eventos',
+    ctaExplore: 'Objetivos e planos',
+    ctaEvents: 'Nossos serviços',
     scroll: 'Role para explorar',
   },
   concepts: {

@@ -15,6 +15,24 @@ interface Props {
   items: MemberItem[];
 }
 
+// Small Indian tricolour (inline SVG so it renders on every OS, unlike the 🇮🇳 emoji).
+function IndiaFlag({ label }: { label: string }) {
+  return (
+    <span
+      title={label}
+      className="absolute right-0 top-1 grid h-8 w-8 place-items-center rounded-full bg-clay shadow-neu-sm sm:right-1 sm:top-2"
+    >
+      <svg viewBox="0 0 30 20" className="h-3.5 w-5 overflow-hidden rounded-[2px] ring-1 ring-ink/10" role="img" aria-label={label}>
+        <rect width="30" height="6.67" fill="#FF9933" />
+        <rect y="6.67" width="30" height="6.67" fill="#FFFFFF" />
+        <rect y="13.33" width="30" height="6.67" fill="#138808" />
+        <circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" strokeWidth="0.6" />
+        <circle cx="15" cy="10" r="0.5" fill="#000080" />
+      </svg>
+    </span>
+  );
+}
+
 export default function Members({ eyebrow, title, lead, items }: Props) {
   return (
     <div className="container-x">
@@ -35,6 +53,7 @@ export default function Members({ eyebrow, title, lead, items }: Props) {
             className="group flex flex-col items-center text-center"
           >
             {/* neumorphic circular frame — extruded disc holding an inset photo well */}
+            <div className="relative">
             <div className="grid h-28 w-28 place-items-center rounded-full bg-clay shadow-neu transition-all duration-300 group-hover:-translate-y-1 group-hover:shadow-neu-hover sm:h-32 sm:w-32">
               <div className="h-24 w-24 overflow-hidden rounded-full shadow-neu-inset sm:h-28 sm:w-28">
                 {m.photo ? (
@@ -45,6 +64,8 @@ export default function Members({ eyebrow, title, lead, items }: Props) {
                   </div>
                 )}
               </div>
+            </div>
+            <IndiaFlag label="India" />
             </div>
 
             <figcaption className="mt-3">

@@ -8,12 +8,12 @@ export interface TrustSlide {
   title: string;
 }
 
-export interface FestivalRow {
+export interface EventRow {
   key: string;
-  glyph: string;
-  dateLabel: string;
-  name: string;
-  meaning: string;
+  day: string; // e.g. "18"
+  month: string; // e.g. "Oct"
+  title: string;
+  place: string;
 }
 
 interface Props {
@@ -23,15 +23,14 @@ interface Props {
   upcomingHeading: string;
   logoSrc: string;
   trustSlides: TrustSlide[];
-  festivals: FestivalRow[];
+  events: EventRow[];
   intervalMs?: number;
 }
 
 // The "Living Calendar" — enlarged to visually balance the hero copy on the
 // left. Two zones:
 //   TOP  = branded, auto-rotating showcase of Vishwa Sanatan Sansthanam events
-//   BOTTOM = a compact list of upcoming festivals (name + date + short meaning,
-//            deliberately WITHOUT scriptural source here).
+//   BOTTOM = upcoming Sansthan events (date badge + title + venue).
 export default function HeroEventsPanel({
   trustName,
   trustTagline,
@@ -39,7 +38,7 @@ export default function HeroEventsPanel({
   upcomingHeading,
   logoSrc,
   trustSlides,
-  festivals,
+  events,
   intervalMs = 4200,
 }: Props) {
   const [index, setIndex] = useState(0);
@@ -115,28 +114,29 @@ export default function HeroEventsPanel({
         </div>
       </div>
 
-      {/* BOTTOM zone — upcoming festivals, no source */}
-      <div className="mt-2 px-5 pb-5 pt-3">
-        <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-faint">
-          {upcomingHeading}
-        </span>
-        <ul className="mt-2.5 space-y-2.5">
-          {festivals.map((f) => (
-            <li key={f.key} className="flex items-start gap-3">
-              <span className="mt-0.5 grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay text-base text-saffron-deep shadow-neu-inset-sm">
-                {f.glyph}
-              </span>
-              <div className="min-w-0 flex-1">
-                <div className="flex items-baseline justify-between gap-2">
-                  <p className="heading-serif truncate text-sm font-bold text-ink">{f.name}</p>
-                  <span className="shrink-0 text-[11px] font-medium text-saffron-deep">{f.dateLabel}</span>
+      {/* BOTTOM zone — upcoming Sansthan events */}
+      {events.length > 0 && (
+        <div className="mt-2 px-5 pb-5 pt-3">
+          <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-faint">
+            {upcomingHeading}
+          </span>
+          <ul className="mt-3 space-y-3">
+            {events.map((e) => (
+              <li key={e.key} className="flex items-center gap-3">
+                {/* date badge */}
+                <span className="flex h-12 w-12 shrink-0 flex-col items-center justify-center rounded-xl bg-clay shadow-neu-inset-sm">
+                  <span className="text-base font-extrabold leading-none text-saffron-deep">{e.day}</span>
+                  <span className="mt-0.5 text-[10px] font-semibold uppercase leading-none text-ink-soft">{e.month}</span>
+                </span>
+                <div className="min-w-0 flex-1">
+                  <p className="heading-serif truncate text-sm font-bold text-ink">{e.title}</p>
+                  <p className="truncate text-xs text-ink-faint">{e.place}</p>
                 </div>
-                <p className="truncate text-xs text-ink-soft">{f.meaning}</p>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
     </div>
   );
 }

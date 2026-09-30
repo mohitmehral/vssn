@@ -21,8 +21,8 @@ export const zh: UISchema = {
     title: '萨那坦达摩',
     subtitle: '永恒的生活之道，重新理解',
     lead: '为现代心灵讲述的古老智慧。通过动感、光影与清晰，探索萨那坦达摩的文明、经典与鲜活传统。',
-    ctaExplore: '开启旅程',
-    ctaEvents: '即将举行的活动',
+    ctaExplore: '宗旨与规划',
+    ctaEvents: '我们的服务',
     scroll: '滚动以探索',
   },
   concepts: {

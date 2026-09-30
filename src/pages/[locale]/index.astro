@@ -5,12 +5,20 @@ import SanatanOrbit from '../../components/react/SanatanOrbit.tsx';
 import TrustGallery from '../../components/react/TrustGallery.tsx';
 import { locales, type Locale } from '../../i18n/config';
 import { getDict } from '../../i18n/utils';
-import { festivals, fField } from '../../data/festivals';
 import { trustEvents } from '../../data/trustEvents';
-import { services, sField } from '../../data/services';
+import { services, servicesCta, sField } from '../../data/services';
+import {
+  objectivesHeading,
+  allObjectivesLabel,
+  introReadMore,
+  introReadLess,
+  heroObjectives,
+  upcomingEventsHeading,
+  upcomingEvents,
+  hField,
+} from '../../data/heroContent';
 import Services from '../../components/react/Services.tsx';
 import { aboutSections, aField } from '../../data/aboutUs';
-import AboutSection from '../../components/react/AboutSection.tsx';
 import { members } from '../../data/members';
 import Members from '../../components/react/Members.tsx';
 import SacredSounds from '../../components/react/SacredSounds.tsx';
@@ -28,16 +36,6 @@ const home = `${base}/${locale}`;
 const conceptOrbit = (Object.keys(t.concepts.items) as (keyof typeof t.concepts.items)[]).map(
   (key) => ({ key, label: t.concepts.items[key].title })
 );
-
-const festivalCards = festivals.map((f) => ({
-  id: f.id,
-  glyph: f.glyph,
-  recurring: f.recurring,
-  nextDate: f.nextDate,
-  name: fField(f.name, locale),
-  meaning: fField(f.meaning, locale),
-  source: fField(f.source, locale),
-}));
 
 const todayIso = new Date().toISOString().slice(0, 10);
 
@@ -61,21 +59,40 @@ const trustSlides = trustEvents.slice(0, 6).map((e) => ({
 
 const trustGalleryItems = trustEvents.map((e) => ({ date: e.date, title: e.title, src: e.src }));
 
-const upcomingRows = festivalCards
-  .filter((f) => f.nextDate && f.nextDate >= todayIso)
-  .sort((a, b) => (a.nextDate! < b.nextDate! ? -1 : 1))
+// Upcoming Sansthan events (today onward, soonest first).
+function dayMonth(iso: string): { day: string; month: string } {
+  const d = new Date(iso + 'T00:00:00');
+  try {
+    return {
+      day: new Intl.DateTimeFormat(locale, { day: 'numeric' }).format(d),
+      month: new Intl.DateTimeFormat(locale, { month: 'short' }).format(d),
+    };
+  } catch {
+    return { day: iso.slice(8, 10), month: iso.slice(5, 7) };
+  }
+}
+
+const upcomingRows = upcomingEvents
+  .filter((e) => e.date >= todayIso)
+  .sort((a, b) => (a.date < b.date ? -1 : 1))
   .slice(0, 4)
-  .map((f) => ({
-    key: `fest-${f.id}`,
-    glyph: f.glyph,
-    dateLabel: formatFullDate(f.nextDate!),
-    name: f.name,
-    meaning: f.meaning,
+  .map((e) => ({
+    key: e.id,
+    ...dayMonth(e.date),
+    title: hField(e.title, locale),
+    place: hField(e.place, locale),
   }));
+
+const heroObjectiveItems = heroObjectives.map((o) => ({ icon: o.icon, title: hField(o.title, locale) }));
 
 const logoSrc = `${base}/static/vssn-logo.jpg`;
 
-const serviceItems = services.map((s) => ({ key: s.key, icon: s.icon, label: sField(s.label, locale) }));
+const serviceItems = services.map((s) => ({
+  key: s.key,
+  icon: s.icon,
+  label: sField(s.label, locale),
+  desc: sField(s.desc, locale),
+}));
 
 const aboutBlocks = aboutSections.map((s) => ({
   id: s.id,
@@ -83,6 +100,8 @@ const aboutBlocks = aboutSections.map((s) => ({
   body: s.body ? aField(s.body, locale) : undefined,
   points: s.points ? aField(s.points, locale) : undefined,
 }));
+const introBlock = aboutBlocks.find((b) => b.body);
+const objectivesBlock = aboutBlocks.find((b) => b.points);
 ---
 
 <Layout locale={locale}>
@@ -96,14 +115,24 @@ const aboutBlocks = aboutSections.map((s) => ({
     ctaEvents={t.hero.ctaEvents}
     scroll={t.hero.scroll}
     exploreHref={`${home}#about`}
-    eventsHref={`${home}#events`}
+    eventsHref={`${home}#services`}
     trustName={t.trust.name}
     trustTagline={t.trust.tagline}
     eventsHeading={t.trust.eventsHeading}
-    upcomingHeading={t.trust.upcomingHeading}
+    upcomingHeading={hField(upcomingEventsHeading, locale)}
     logoSrc={logoSrc}
     trustSlides={trustSlides}
-    festivals={upcomingRows}
+    events={upcomingRows}
+    objectivesHeading={hField(objectivesHeading, locale)}
+    allObjectivesLabel={hField(allObjectivesLabel, locale)}
+    objectives={heroObjectiveItems}
+    introHeading={introBlock?.heading ?? ''}
+    introBody={introBlock?.body ?? t.hero.lead}
+    introReadMore={hField(introReadMore, locale)}
+    introReadLess={hField(introReadLess, locale)}
+    allObjectivesHeading={objectivesBlock?.heading ?? ''}
+    allObjectives={objectivesBlock?.points ?? []}
+    showLessLabel={t.about.showLess}
   />
 
   <section id="sanatan" class="scroll-mt-20 py-16 sm:py-24">
@@ -124,6 +153,8 @@ const aboutBlocks = aboutSections.map((s) => ({
       title={t.services.title}
       lead={t.services.lead}
       items={serviceItems}
+      cta={sField(servicesCta, locale)}
+      phoneTel="+917388735905"
     />
   </section>
 
@@ -161,35 +192,5 @@ const aboutBlocks = aboutSections.map((s) => ({
       omSrc={`${base}/static/om-chanting-1.mp3`}
       shivaSrc={`${base}/static/om-namah-shivaya-2.mp3`}
     />
-  </section>
-
-  <section id="about" class="scroll-mt-20 py-16 sm:py-24">
-    <div class="container-x">
-      <div class="mx-auto max-w-2xl text-center">
-        <p class="eyebrow mx-auto mb-3 justify-center">{t.about.eyebrow}</p>
-        <h2 class="heading-serif text-3xl font-bold text-ink sm:text-4xl">{t.about.title}</h2>
-        <p class="mt-4 text-ink-soft">{t.about.lead}</p>
-      </div>
-
-      <!-- One unified tile: trust header + परिचय + कार्ययोजना एवं उद्देश्य -->
-      <AboutSection
-        client:visible
-        sections={aboutBlocks}
-        showAllLabel={t.about.showAll}
-        showLessLabel={t.about.showLess}
-        trustEyebrow={t.trust.eyebrow}
-        trustName={t.trust.name}
-        trustTagline={t.trust.tagline}
-        trustLead={t.trust.lead}
-        values={[
-          t.trust.values.dharma,
-          t.trust.values.sanskar,
-          t.trust.values.harmony,
-          t.trust.values.seva,
-          t.trust.values.nation,
-        ]}
-        logoSrc={logoSrc}
-      />
-    </div>
   </section>
 </Layout>
