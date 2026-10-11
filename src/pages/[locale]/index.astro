@@ -92,6 +92,8 @@ const serviceItems = services.map((s) => ({
   icon: s.icon,
   label: sField(s.label, locale),
   desc: sField(s.desc, locale),
+  // Classical Music opens the Sacred Sounds player section.
+  href: s.key === 'music' ? `${home}#sounds` : undefined,
 }));
 
 const aboutBlocks = aboutSections.map((s) => ({

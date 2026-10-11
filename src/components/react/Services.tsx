@@ -5,6 +5,7 @@ interface ServiceItem {
   icon: string;
   label: string;
   desc: string;
+  href?: string; // optional: tile becomes a link (e.g. Classical Music → #sounds)
 }
 
 interface Props {
@@ -39,6 +40,20 @@ export default function Services({ eyebrow, title, lead, items, cta, phoneTel }:
             transition={{ duration: 0.45, delay: (i % 4) * 0.05, ease: [0.22, 1, 0.36, 1] }}
             className="group relative flex flex-col items-center rounded-3xl bg-clay px-3 pb-5 pt-6 text-center shadow-neu transition-all duration-300 hover:-translate-y-1 hover:shadow-neu-hover sm:px-5 sm:pb-6 sm:pt-7"
           >
+            {/* whole tile clickable when the service has its own section */}
+            {s.href && (
+              <a
+                href={s.href}
+                aria-label={s.label}
+                className="absolute inset-0 z-10 rounded-3xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron-deep"
+              />
+            )}
+            {s.href && (
+              <span className="absolute right-3 top-3 grid h-6 w-6 place-items-center rounded-full bg-clay text-[11px] text-saffron-deep shadow-neu-sm transition-transform duration-300 group-hover:translate-x-0.5" aria-hidden="true">
+                ▶
+              </span>
+            )}
+
             {/* index */}
             <span className="absolute left-4 top-3 text-[10px] font-semibold tabular-nums text-ink-faint/70">
               {String(i + 1).padStart(2, '0')}
