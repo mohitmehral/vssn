@@ -1,9 +1,10 @@
 // Vishwa Sanatan Sansthanam trust members.
 //
 // PHOTOS live in public/members/ (the only copy; no sync step):
-//   www.vssn.org.in-member-<sequence>.jpg            -> India flag (default)
-//   www.vssn.org.in-member-<country>-<sequence>.jpg  -> that country's flag
-// e.g. www.vssn.org.in-member-usa-19.jpg. Shown in order of <sequence>.
+//   www.vishwasanatansansthanam.org-member-<sequence>.jpg            -> India flag (default)
+//   www.vishwasanatansansthanam.org-member-<country>-<sequence>.jpg  -> that country's flag
+// e.g. www.vishwasanatansansthanam.org-member-usa-19.jpg. Shown in order of <sequence>.
+// (The older www.vssn.org.in-member-… prefix is still accepted.)
 // Flags are defined in components/react/Members.tsx (FLAGS).
 import fs from 'node:fs';
 import path from 'node:path';
@@ -15,7 +16,7 @@ export interface Member {
   country: string; // lower-case tag from the filename; 'india' when absent
 }
 
-const PATTERN = /^www\.vssn\.org\.in-member-(?:([a-z-]+?)-)?(\d+)\.(jpe?g|png|webp)$/i;
+const PATTERN = /^www\.(?:vishwasanatansansthanam\.org|vssn\.org\.in)-member-(?:([a-z-]+?)-)?(\d+)\.(jpe?g|png|webp)$/i;
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const membersDir = path.resolve(__dirname, '../../public/members');

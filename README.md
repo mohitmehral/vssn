@@ -27,8 +27,8 @@ automatically, newest first, after the next deploy.
 
 Put 2:3 portrait images in `public/members/`:
 
-- `www.vssn.org.in-member-<sequence>.jpg` shows the India flag
-- `www.vssn.org.in-member-<country>-<sequence>.jpg` shows that country's flag (e.g. `usa`, `sweden`)
+- `www.vishwasanatansansthanam.org-member-<sequence>.jpg` shows the India flag
+- `www.vishwasanatansansthanam.org-member-<country>-<sequence>.jpg` shows that country's flag (e.g. `usa`, `sweden`)
 
 They display in order of `<sequence>`.
 
