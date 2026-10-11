@@ -9,6 +9,7 @@ interface Props {
 const { locale } = Astro.props;
 const t = getDict(locale);
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const home = `${base}/${locale}`;
 const year = new Date().getFullYear();
 
 // Official Vishwa Sanatan Sansthanam details (from the trust banner).
@@ -19,73 +20,156 @@ const trust = {
   email: 'vishwasanatansansthanam@gmail.com',
   phone: '+91 7388735905',
   phoneTel: '+917388735905',
+  whatsapp: 'https://wa.me/917388735905',
   facebook: 'https://www.facebook.com/vishwasanatansansthanam',
   instagram: 'https://www.instagram.com/vishwasanatansansthanam',
-  handle: '/vishwasanatansansthanam',
+  handle: 'vishwasanatansansthanam',
 };
+
+// Footer-only labels (en + hi; other locales fall back to en).
+const L = {
+  explore: { en: 'Explore', hi: 'अन्वेषण' },
+  contact: { en: 'Contact', hi: 'संपर्क' },
+  follow: { en: 'Follow us', hi: 'हमसे जुड़ें' },
+  registered: { en: 'Registered Trust · India', hi: 'पंजीकृत न्यास · भारत' },
+} as const;
+const l = (k: keyof typeof L) => (L[k] as Record<string, string>)[locale] ?? L[k].en;
+
+const links = [
+  { href: `${home}#about`, label: t.nav.about },
+  { href: `${home}#sanatan`, label: t.nav.concepts },
+  { href: `${home}#services`, label: t.services.title },
+  { href: `${home}#members`, label: t.members.title },
+  { href: `${home}#events`, label: t.nav.events },
+  { href: `${home}#sounds`, label: t.sounds.title },
+];
+
+const socials = [
+  { name: 'Instagram', href: trust.instagram, hover: 'hover:bg-gradient-to-tr hover:from-[#f9ce34] hover:via-[#ee2a7b] hover:to-[#6228d7]' },
+  { name: 'Facebook', href: trust.facebook, hover: 'hover:bg-[#1877f2]' },
+  { name: 'WhatsApp', href: trust.whatsapp, hover: 'hover:bg-[#25d366]' },
+];
 ---
 
 <footer class="relative mt-24 bg-clay">
-  <div class="container-x py-14">
-    <!-- Trust identity + contact, molded into one neu card -->
-    <div class="grid gap-8 rounded-neu bg-clay p-8 shadow-neu md:grid-cols-[1.2fr_1fr] md:gap-10 md:p-10">
-      <div>
+  <!-- thin saffron → gold → green line: a quiet nod to the dhwaj and tricolour -->
+  <div class="h-1 w-full bg-gradient-to-r from-saffron-deep via-[#e8b04b] to-[#138808] opacity-70" aria-hidden="true"></div>
+
+  <div class="container-x py-12 sm:py-14">
+    <div class="grid gap-10 md:grid-cols-12 md:gap-8">
+      <!-- Brand -->
+      <div class="md:col-span-5">
         <div class="flex items-center gap-3">
           <span class="grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-full bg-clay shadow-neu-inset-deep">
             <VssLogo class="h-full w-full rounded-full object-cover" />
           </span>
-          <div>
-            <p class="heading-serif text-lg font-bold text-ink">{t.trust.name}</p>
+          <div class="min-w-0">
+            <p class="heading-serif text-lg font-bold leading-tight text-ink">{t.trust.name}</p>
             <p class="text-sm text-saffron-deep">{t.trust.tagline}</p>
           </div>
         </div>
-        <p class="mt-4 max-w-md text-sm leading-relaxed text-ink-soft">{t.footer.tagline}</p>
-        <div class="mt-5 flex flex-wrap items-center gap-2">
-          <span class="inline-flex items-center gap-2 rounded-full bg-clay px-4 py-2 text-xs font-medium text-ink shadow-neu-inset-sm">
-            <span class="font-semibold text-saffron-deep">Reg. No.</span>
-            <span class="tracking-wide">{trust.regNo}</span>
-          </span>
-          <span class="inline-flex items-center gap-1.5 rounded-full bg-clay px-4 py-2 text-xs font-medium text-ink shadow-neu-inset-sm">
-            <span aria-hidden="true">🇮🇳</span> Registered in India
-          </span>
+        <p class="mt-4 max-w-sm text-sm leading-relaxed text-ink-soft">{t.footer.tagline}</p>
+
+        <!-- Social: one handle, icon buttons that light up in brand colour -->
+        <p class="mt-6 text-[11px] font-semibold uppercase tracking-[0.18em] text-maroon">{l('follow')}</p>
+        <div class="mt-3 flex flex-wrap items-center gap-3">
+          {socials.map((s) => (
+            <a
+              href={s.href}
+              target="_blank"
+              rel="noopener"
+              aria-label={s.name === 'WhatsApp' ? `WhatsApp ${trust.phone}` : `${s.name} @${trust.handle}`}
+              title={s.name}
+              class={`group grid h-11 w-11 place-items-center rounded-2xl bg-clay text-ink-soft shadow-neu-sm transition duration-300 hover:-translate-y-0.5 hover:text-white hover:shadow-neu-hover ${s.hover}`}
+            >
+              {s.name === 'Instagram' && (
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="3" y="3" width="18" height="18" rx="5" /><circle cx="12" cy="12" r="4" /><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+                </svg>
+              )}
+              {s.name === 'Facebook' && (
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+                  <path d="M13.5 21v-7.5h2.6l.4-3h-3V8.6c0-.9.3-1.5 1.5-1.5h1.6V4.4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.9 1.4-3.9 4v2.2H7.8v3h2.6V21z" />
+                </svg>
+              )}
+              {s.name === 'WhatsApp' && (
+                <svg viewBox="0 0 24 24" class="h-5 w-5" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.2 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7a8 8 0 0 1-4.1-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.2.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11.2 11.2 0 0 0 4.3 3.8c1.6.7 2.2.7 3 .6a2.6 2.6 0 0 0 1.7-1.2 2.1 2.1 0 0 0 .1-1.2c0-.1-.2-.2-.4-.3Z" />
+                </svg>
+              )}
+            </a>
+          ))}
+          <a
+            href={trust.instagram}
+            target="_blank"
+            rel="noopener"
+            class="ml-1 break-all text-sm font-semibold text-ink transition hover:text-saffron-deep"
+          >@{trust.handle}</a>
         </div>
       </div>
 
+      <!-- Explore -->
+      <nav class="md:col-span-3" aria-label={l('explore')}>
+        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-maroon">{l('explore')}</p>
+        <ul class="mt-4 grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm md:grid-cols-1">
+          {links.map((k) => (
+            <li>
+              <a href={k.href} class="group inline-flex items-center gap-2 text-ink-soft transition hover:text-saffron-deep">
+                <span class="h-1 w-1 rounded-full bg-saffron-deep/50 transition-all group-hover:w-3 group-hover:bg-saffron-deep" aria-hidden="true"></span>
+                {k.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+
       <!-- Contact -->
-      <div class="space-y-3 text-sm">
-        <a
-          href={trust.websiteUrl}
-          target="_blank"
-          rel="noopener"
-          class="flex items-center gap-3 text-ink-soft transition hover:text-saffron-deep"
-        >
-          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay shadow-neu-inset-sm" aria-hidden="true">🌐</span>{trust.website}
-        </a>
-        <a
-          href={`mailto:${trust.email}`}
-          class="flex items-center gap-3 break-all text-ink-soft transition hover:text-saffron-deep"
-        >
-          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay shadow-neu-inset-sm" aria-hidden="true">✉️</span>{trust.email}
-        </a>
-        <a
-          href={`tel:${trust.phoneTel}`}
-          class="flex items-center gap-3 text-ink-soft transition hover:text-saffron-deep"
-        >
-          <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay shadow-neu-inset-sm" aria-hidden="true">📞</span>{trust.phone}
-        </a>
-        <div class="flex flex-wrap gap-3 pt-1">
-          <a href={trust.facebook} target="_blank" rel="noopener" class="neu-chip transition hover:text-saffron-deep" aria-label="Facebook">
-            Facebook
-          </a>
-          <a href={trust.instagram} target="_blank" rel="noopener" class="neu-chip transition hover:text-saffron-deep" aria-label="Instagram">
-            Instagram
-          </a>
-        </div>
+      <div class="md:col-span-4">
+        <p class="text-[11px] font-semibold uppercase tracking-[0.18em] text-maroon">{l('contact')}</p>
+        <ul class="mt-4 space-y-3 text-sm">
+          <li>
+            <a href={`tel:${trust.phoneTel}`} class="flex items-center gap-3 text-ink-soft transition hover:text-saffron-deep">
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay shadow-neu-inset-sm" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 fill-saffron-deep"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.2 11.4 11.4 0 0 0 3.6.6 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1 11.4 11.4 0 0 0 .6 3.6 1 1 0 0 1-.3 1z" /></svg>
+              </span>{trust.phone}
+            </a>
+          </li>
+          <li>
+            <a href={`mailto:${trust.email}`} class="flex items-center gap-3 break-all text-ink-soft transition hover:text-saffron-deep">
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay shadow-neu-inset-sm" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="h-4 w-4 fill-saffron-deep"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2Zm0 4-8 5-8-5V6l8 5 8-5Z" /></svg>
+              </span>{trust.email}
+            </a>
+          </li>
+          <li>
+            <a href={trust.websiteUrl} target="_blank" rel="noopener" class="flex items-center gap-3 text-ink-soft transition hover:text-saffron-deep">
+              <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay shadow-neu-inset-sm" aria-hidden="true">
+                <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9" class="stroke-saffron-deep" /><path class="stroke-saffron-deep" d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18" /></svg>
+              </span>{trust.website}
+            </a>
+          </li>
+        </ul>
       </div>
     </div>
 
-    <div class="mt-8 text-center text-xs text-ink-faint">
-      © {year} {t.trust.name}. {t.footer.rights}
+    <!-- Bottom bar: copyright + one compact registration badge -->
+    <div class="mt-10 flex flex-col-reverse items-center gap-4 border-t border-ink/10 pt-6 sm:flex-row sm:justify-between">
+      <p class="text-center text-xs text-ink-faint sm:text-left">© {year} {t.trust.name} · {t.footer.rights}</p>
+
+      <span
+        class="inline-flex items-center gap-2.5 rounded-full bg-clay py-1.5 pl-1.5 pr-4 text-xs shadow-neu-inset-sm"
+        title={`Reg. No. ${trust.regNo}`}
+      >
+        <span class="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-clay shadow-neu-sm" aria-hidden="true">
+          <svg viewBox="0 0 30 20" class="h-2.5 w-[0.95rem] overflow-hidden rounded-[1px]">
+            <rect width="30" height="6.67" fill="#FF9933" /><rect y="6.67" width="30" height="6.67" fill="#fff" /><rect y="13.33" width="30" height="6.67" fill="#138808" />
+            <circle cx="15" cy="10" r="2.6" fill="none" stroke="#000080" stroke-width="0.7" />
+          </svg>
+        </span>
+        <span class="font-semibold text-ink">{l('registered')}</span>
+        <span class="h-3 w-px bg-ink/15" aria-hidden="true"></span>
+        <span class="font-mono tracking-wide text-ink-soft"><span class="sr-only">Reg. No. </span>{trust.regNo}</span>
+      </span>
     </div>
   </div>
 </footer>

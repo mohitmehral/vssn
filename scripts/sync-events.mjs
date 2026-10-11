@@ -9,7 +9,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const ALLOWED = new Set(['.jpg', '.jpeg', '.png', '.webp']);
 
 // Folders under docs/ that mirror into public/.
-const FOLDERS = ['events', 'members'];
+const FOLDERS = ['events']; // member photos live directly in public/members/
 
 for (const folder of FOLDERS) {
   const srcDir = join(__dirname, '..', 'docs', folder);

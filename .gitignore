@@ -28,4 +28,3 @@ pnpm-debug.log*
 
 # generated mirror of docs/events (source of truth is docs/events/)
 public/events/
-public/members/
