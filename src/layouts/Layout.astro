@@ -32,6 +32,19 @@ const pageDesc = description ?? t.meta.description;
     <meta name="generator" content={Astro.generator} />
     <meta name="theme-color" content="#f2e7d3" />
 
+    <!-- Google tag (gtag.js) — production builds only, so local dev visits aren't counted -->
+    {import.meta.env.PROD && (
+      <>
+        <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-GZ9P9KBP45"></script>
+        <script is:inline>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-GZ9P9KBP45');
+        </script>
+      </>
+    )}
+
     <!-- Fonts: Plus Jakarta Sans (display) + DM Sans (body) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
