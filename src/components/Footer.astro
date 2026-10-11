@@ -15,8 +15,10 @@ const year = new Date().getFullYear();
 // Official Vishwa Sanatan Sansthanam details (from the trust banner).
 const trust = {
   regNo: 'IN-UP76422624409815Y',
-  website: 'www.vssn.org.in',
-  websiteUrl: 'https://www.vssn.org.in',
+  website: 'www.vishwasanatansansthanam.org',
+  websiteUrl: 'https://www.vishwasanatansansthanam.org',
+  shortSite: 'vssn.org.in', // short address; 301-redirects to the main site
+  shortSiteUrl: 'https://vssn.org.in',
   email: 'vishwasanatansansthanam@gmail.com',
   phone: '+91 7388735905',
   phoneTel: '+917388735905',
@@ -32,6 +34,7 @@ const L = {
   contact: { en: 'Contact', hi: 'संपर्क' },
   follow: { en: 'Follow us', hi: 'हमसे जुड़ें' },
   registered: { en: 'Registered Trust · India', hi: 'पंजीकृत न्यास · भारत' },
+  short: { en: 'Short', hi: 'संक्षिप्त' },
 } as const;
 const l = (k: keyof typeof L) => (L[k] as Record<string, string>)[locale] ?? L[k].en;
 
@@ -142,11 +145,17 @@ const socials = [
             </a>
           </li>
           <li>
-            <a href={trust.websiteUrl} target="_blank" rel="noopener" class="flex items-center gap-3 text-ink-soft transition hover:text-saffron-deep">
+            <div class="flex items-center gap-3 text-ink-soft">
               <span class="grid h-9 w-9 shrink-0 place-items-center rounded-xl bg-clay shadow-neu-inset-sm" aria-hidden="true">
                 <svg viewBox="0 0 24 24" class="h-4 w-4" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9" class="stroke-saffron-deep" /><path class="stroke-saffron-deep" d="M3 12h18M12 3c2.5 2.7 2.5 15.3 0 18M12 3c-2.5 2.7-2.5 15.3 0 18" /></svg>
-              </span>{trust.website}
-            </a>
+              </span>
+              <span class="min-w-0">
+                <a href={trust.websiteUrl} class="block break-all transition hover:text-saffron-deep">{trust.website}</a>
+                <a href={trust.shortSiteUrl} class="mt-0.5 inline-flex items-center gap-1.5 text-xs text-ink-faint transition hover:text-saffron-deep">
+                  <span class="rounded bg-clay px-1.5 py-px text-[10px] font-semibold uppercase tracking-wide text-saffron-deep shadow-neu-inset-sm">{l('short')}</span>{trust.shortSite}
+                </a>
+              </span>
+            </div>
           </li>
         </ul>
       </div>

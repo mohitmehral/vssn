@@ -9,11 +9,12 @@ const locales = ['hi', 'en', 'zh', 'es', 'ar', 'bn', 'pt', 'ru', 'fr', 'ja'];
 // Right-to-left languages
 const rtlLocales = ['ar'];
 
-// Served on a custom domain at the ROOT (base '/'). Current domain:
-// vssn.apnok.com. To switch to a future domain (e.g. www.vssn.org.in), just
-// change SITE below (and public/CNAME + the DNS record). Base stays '/'.
+// Served on a custom domain at the ROOT (base '/'). Main domain:
+// www.vishwasanatansansthanam.org (vssn.org.in + vssn.apnok.com 301-redirect
+// to it via GoDaddy forwarding). To change it, update SITE here, SITE_URL in
+// deploy.yml, public/CNAME, robots.txt and the GitHub Pages custom domain.
 // Both can still be overridden via env at build time.
-const SITE = process.env.SITE_URL || 'https://vssn.apnok.com';
+const SITE = process.env.SITE_URL || 'https://www.vishwasanatansansthanam.org';
 const BASE = process.env.BASE_PATH ?? '/';
 
 export default defineConfig({

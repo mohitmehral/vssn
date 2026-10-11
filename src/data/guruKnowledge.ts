@@ -70,8 +70,8 @@ export const knowledge: KnowledgeEntry[] = [
       'संपर्क', 'फोन', 'नंबर', 'ईमेल', 'पता', 'व्हाट्सएप', 'वेबसाइट',
     ],
     answer: {
-      en: 'You can reach Vishwa Sanatan Sansthanam by phone/WhatsApp at +91 7388735905, by email at vishwasanatansansthanam@gmail.com, or via www.vssn.org.in. Full details are in the footer below.',
-      hi: 'विश्व सनातन संस्थानम् से संपर्क: फोन/व्हाट्सएप +91 7388735905, ईमेल vishwasanatansansthanam@gmail.com, या www.vssn.org.in पर। पूरी जानकारी नीचे फुटर में है।',
+      en: 'You can reach Vishwa Sanatan Sansthanam by phone/WhatsApp at +91 7388735905, by email at vishwasanatansansthanam@gmail.com, or via www.vishwasanatansansthanam.org (short: vssn.org.in). Full details are in the footer below.',
+      hi: 'विश्व सनातन संस्थानम् से संपर्क: फोन/व्हाट्सएप +91 7388735905, ईमेल vishwasanatansansthanam@gmail.com, या www.vishwasanatansansthanam.org (संक्षिप्त: vssn.org.in) पर। पूरी जानकारी नीचे फुटर में है।',
     },
   },
 

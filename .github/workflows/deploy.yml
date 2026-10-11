@@ -34,9 +34,9 @@ jobs:
 
       - name: Build site
         # Served on a custom domain at the root. To move to a future domain
-        # (e.g. www.vssn.org.in) update SITE_URL here + public/CNAME + DNS.
+        # update SITE_URL here + astro.config.mjs + public/CNAME + DNS.
         env:
-          SITE_URL: https://vssn.apnok.com
+          SITE_URL: https://www.vishwasanatansansthanam.org
           BASE_PATH: /
         run: npm run build
 

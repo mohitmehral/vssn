@@ -5,7 +5,7 @@ cultural trust registered in India.
 
 _सामाजिक समरसता ही सनातन की पहचान है।_
 
-🌐 **vssn.apnok.com** · ✉️ vishwasanatansansthanam@gmail.com · 📞 +91 7388735905
+🌐 **www.vishwasanatansansthanam.org** (short: vssn.org.in) · ✉️ vishwasanatansansthanam@gmail.com · 📞 +91 7388735905
 
 ---
 

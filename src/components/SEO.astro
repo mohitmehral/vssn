@@ -14,7 +14,7 @@ interface Props {
 const { title, description, keywords, locale, pathAfterLocale = '', image } = Astro.props;
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, '');
-const siteOrigin = Astro.site?.origin ?? 'https://mohitmehral.github.io';
+const siteOrigin = Astro.site?.origin ?? 'https://www.vishwasanatansansthanam.org';
 
 const buildPath = (loc: Locale) => {
   const sub = pathAfterLocale ? `/${pathAfterLocale.replace(/^\/+/, '')}` : '';
@@ -33,7 +33,7 @@ const orgSchema = {
   '@context': 'https://schema.org',
   '@type': 'NGO',
   name: 'Vishwa Sanatan Sansthanam',
-  alternateName: 'विश्व सनातन संस्थानम्',
+  alternateName: ['विश्व सनातन संस्थानम्', 'VSSN', 'Vishwa Sanatan Sansthanam Trust'],
   url: `${siteOrigin}${base}/`,
   logo: `${siteOrigin}${base}/static/vssn-logo.jpg`,
   image: ogImage,
@@ -41,6 +41,9 @@ const orgSchema = {
   slogan: 'Yato Dharmastato Jayah',
   foundingDate: '2026-01-29',
   foundingLocation: 'India',
+  address: { '@type': 'PostalAddress', addressCountry: 'IN' },
+  areaServed: 'Worldwide',
+  identifier: { '@type': 'PropertyValue', name: 'Trust Registration No.', value: 'IN-UP76422624409815Y' },
   email: 'vishwasanatansansthanam@gmail.com',
   telephone: '+91-7388735905',
   contactPoint: {
@@ -53,7 +56,6 @@ const orgSchema = {
   sameAs: [
     'https://www.facebook.com/vishwasanatansansthanam',
     'https://www.instagram.com/vishwasanatansansthanam',
-    'https://www.vssn.org.in',
   ],
 };
 
@@ -61,8 +63,10 @@ const siteSchema = {
   '@context': 'https://schema.org',
   '@type': 'WebSite',
   name: 'Vishwa Sanatan Sansthanam',
+  alternateName: ['VSSN', 'vssn.org.in'],
   url: `${siteOrigin}${base}/`,
   inLanguage: locale,
+  publisher: { '@type': 'NGO', name: 'Vishwa Sanatan Sansthanam' },
   description,
 };
 
@@ -95,6 +99,7 @@ const altLocales = locales.filter((l) => l !== locale);
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:secure_url" content={ogImage} />
 <meta property="og:image:alt" content="Vishwa Sanatan Sansthanam" />
 <meta property="og:locale" content={locale} />
 {altLocales.map((l) => <meta property="og:locale:alternate" content={l} />)}
