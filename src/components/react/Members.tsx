@@ -16,7 +16,7 @@ interface Props {
 }
 
 // Country flags as inline SVG (renders on every OS, unlike flag emoji).
-const FLAGS: Record<string, { label: string; svg: ReactNode }> = {
+const FLAGS: Record<string, { label: string; svg: ReactNode; viewBox?: string; plain?: boolean }> = {
   india: {
     label: 'India',
     svg: (
@@ -54,6 +54,29 @@ const FLAGS: Record<string, { label: string; svg: ReactNode }> = {
       </>
     ),
   },
+  vietnam: {
+    label: 'Vietnam',
+    svg: (
+      <>
+        <rect width="30" height="20" fill="#DA251D" />
+        <polygon points="15.00,5.00 16.29,8.82 20.33,8.87 17.09,11.28 18.29,15.13 15.00,12.80 11.71,15.13 12.91,11.28 9.67,8.87 13.71,8.82" fill="#FFFF00" />
+      </>
+    ),
+  },
+  // Nepal's flag is a double pennant, not a rectangle: own viewBox, no frame.
+  nepal: {
+    label: 'Nepal',
+    viewBox: '0 0 16 20',
+    plain: true,
+    svg: (
+      <>
+        <path d="M1 1 L14.5 9.4 H6.2 L14.5 19 H1 Z" fill="#DC143C" stroke="#003893" strokeWidth="1.3" strokeLinejoin="miter" />
+        <path d="M3.2 5.6 a2.3 2.3 0 0 0 4.2 0 a2.3 1.6 0 0 1 -4.2 0 Z" fill="#fff" />
+        <circle cx="5.3" cy="5.4" r="0.8" fill="#fff" />
+        <circle cx="5.3" cy="14.4" r="1.9" fill="#fff" />
+      </>
+    ),
+  },
 };
 
 function CountryFlag({ country }: { country: string }) {
@@ -64,7 +87,12 @@ function CountryFlag({ country }: { country: string }) {
       title={flag.label}
       className="absolute right-2.5 top-2.5 grid h-7 w-7 place-items-center rounded-full bg-clay/90 shadow-neu-sm backdrop-blur-sm"
     >
-      <svg viewBox="0 0 30 20" className="h-3 w-[1.125rem] overflow-hidden rounded-[2px] ring-1 ring-ink/10" role="img" aria-label={flag.label}>
+      <svg
+        viewBox={flag.viewBox ?? '0 0 30 20'}
+        className={flag.plain ? 'h-4 w-[0.8rem]' : 'h-3 w-[1.125rem] overflow-hidden rounded-[2px] ring-1 ring-ink/10'}
+        role="img"
+        aria-label={flag.label}
+      >
         {flag.svg}
       </svg>
     </span>
