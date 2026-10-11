@@ -10,7 +10,7 @@ export interface Service {
 }
 
 export const services: Service[] = [
-  { key: 'yoga', icon: '🧘', label: { en: 'Yoga Service', hi: 'योगा सर्विस' }, desc: { en: 'Guided yoga for body and breath', hi: 'शरीर व श्वास हेतु निर्देशित योग' } },
+  { key: 'yoga', icon: '🧘', label: { en: 'Yoga Service', hi: 'योग साधना' }, desc: { en: 'Guided yoga for body and breath', hi: 'शरीर व श्वास हेतु निर्देशित योग' } },
   { key: 'astrology', icon: '🔮', label: { en: 'Astrology', hi: 'एस्ट्रोलॉजी' }, desc: { en: 'Vedic jyotish guidance', hi: 'वैदिक ज्योतिष परामर्श' } },
   { key: 'pranic', icon: '✋', label: { en: 'Pranic Healing', hi: 'प्राणिक हीलिंग' }, desc: { en: 'Energy-based healing sessions', hi: 'ऊर्जा आधारित उपचार सत्र' } },
   { key: 'numerology', icon: '🔢', label: { en: 'Numerology', hi: 'अंक ज्योतिष' }, desc: { en: 'Insight through numbers', hi: 'अंकों के माध्यम से मार्गदर्शन' } },
