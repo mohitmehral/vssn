@@ -46,9 +46,10 @@ after the date to control the order; the newest date/time appears first:
 WhatsApp-style filenames such as `PHOTO-2026-09-21-16-45-59.jpg` also work.
 Text after the date/time becomes the displayed title when available.
 
-For reliable, fast video playback, use short H.264 MP4 videos, preferably 720p
-or below and under 10 MB. Hero videos autoplay muted, loop, and play inline;
-gallery videos show playback controls.
+For reliable, fast video playback, use short H.264/AAC MP4 videos, preferably
+720p or below and under 10 MB. Browsers require autoplaying hero videos to start
+muted; the visible player controls let visitors unmute them. Videos loop and play
+inline, and gallery videos also show playback controls.
 
 To remove an item, delete it from `docs/events/` and commit the deletion. The
 next deployment removes it from the live website as well.

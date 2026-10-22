@@ -25,8 +25,9 @@ e.g. `2026-08-15_Manish-kumar-Varanasi.jpg` → caption **"Manish Kumar Varanasi
 
 Allowed extensions: `jpg`, `jpeg`, `png`, `webp`, `mp4`, `m4v`, `webm`.
 
-Hero videos autoplay muted, loop, and play inline. Gallery videos include player
-controls. For reliable browser playback, prefer H.264/AAC MP4 or M4V, ideally
+Hero videos autoplay muted, loop, and play inline because browsers block audible
+autoplay. Player controls let visitors unmute them after playback begins. Gallery
+videos also include player controls. For reliable browser playback, prefer H.264/AAC MP4 or M4V, ideally
 720p and under 10 MB. The filename date and optional time control sequence.
 
 ## How it works

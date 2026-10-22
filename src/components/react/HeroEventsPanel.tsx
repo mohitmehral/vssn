@@ -112,6 +112,7 @@ export default function HeroEventsPanel({
                     muted
                     loop
                     playsInline
+                    controls
                     preload="metadata"
                   />
                 ) : (
