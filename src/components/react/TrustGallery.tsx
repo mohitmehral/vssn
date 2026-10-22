@@ -4,6 +4,7 @@ interface TrustCard {
   date: string;
   title: string;
   src: string;
+  mediaType?: 'image' | 'video';
 }
 
 interface Props {
@@ -79,12 +80,25 @@ export default function TrustGallery({ eyebrow, title, lead, noTrustEvents, loca
                   className="group relative w-72 shrink-0 overflow-hidden rounded-neu bg-clay p-2 shadow-neu"
                 >
                   <div className="overflow-hidden rounded-2xl shadow-neu-inset">
-                    <img
-                      src={e.src}
-                      alt={e.title}
-                      loading="lazy"
-                      className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
+                    {e.mediaType === 'video' ? (
+                      <video
+                        src={e.src}
+                        aria-label={e.title}
+                        preload="metadata"
+                        muted
+                        loop
+                        playsInline
+                        controls
+                        className="h-52 w-full object-cover"
+                      />
+                    ) : (
+                      <img
+                        src={e.src}
+                        alt={e.title}
+                        loading="lazy"
+                        className="h-52 w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                    )}
                   </div>
                   <figcaption className="absolute inset-x-2 bottom-2 rounded-b-2xl bg-gradient-to-t from-maroon-deep/90 to-transparent p-4">
                     <p className="text-xs text-clay/80">{formatDate(e.date, locale)}</p>

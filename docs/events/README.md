@@ -1,8 +1,8 @@
-# Trust Event Photos
+# Trust Event Media
 
-Drop event photographs into **this folder** and they appear automatically in the
+Drop event photographs or short videos into **this folder** and they appear automatically in the
 "Sansthan Events" gallery and the hero "Living Calendar" panel. The site always
-shows the **newest photos first**.
+shows the **newest media first**.
 
 ## Naming — both of these work
 
@@ -23,13 +23,17 @@ YYYY-MM-DD_short-title.jpg
 ```
 e.g. `2026-08-15_Manish-kumar-Varanasi.jpg` → caption **"Manish Kumar Varanasi"**.
 
-Allowed extensions: `jpg`, `jpeg`, `png`, `webp`.
+Allowed extensions: `jpg`, `jpeg`, `png`, `webp`, `mp4`, `m4v`, `webm`.
+
+Hero videos autoplay muted, loop, and play inline. Gallery videos include player
+controls. For reliable browser playback, prefer H.264/AAC MP4 or M4V, ideally
+720p and under 10 MB. The filename date and optional time control sequence.
 
 ## How it works
 
 At build time `src/data/trustEvents.ts` scans this folder, extracts each date
 (and time if present), sorts newest-first, and `scripts/sync-events.mjs` copies
-the images into `public/events/` for publishing. Just add files and push — the
+the media into `public/events/` for publishing. Just add files and push — the
 GitHub Action rebuilds and deploys automatically. No code changes needed.
 
 > Keep files reasonably sized (ideally under ~1 MB each) so the site stays fast.

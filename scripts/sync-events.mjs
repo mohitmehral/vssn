@@ -1,4 +1,4 @@
-// Copies photos from docs/<folder>/ (the source of truth) into
+// Copies event media from docs/<folder>/ (the source of truth) into
 // public/<folder>/ so they are published with the static site.
 // Runs automatically before every build via the "prebuild" npm script.
 import { readdirSync, mkdirSync, copyFileSync, rmSync, existsSync } from 'node:fs';
@@ -6,7 +6,7 @@ import { dirname, join, extname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
-const ALLOWED = new Set(['.jpg', '.jpeg', '.png', '.webp']);
+const ALLOWED = new Set(['.jpg', '.jpeg', '.png', '.webp', '.mp4', '.m4v', '.webm']);
 
 // Folders under docs/ that mirror into public/.
 const FOLDERS = ['events']; // member photos live directly in public/members/
@@ -27,5 +27,5 @@ for (const folder of FOLDERS) {
       copied++;
     }
   }
-  console.log(`[sync] copied ${copied} image(s) to public/${folder}/`);
+  console.log(`[sync] copied ${copied} media file(s) to public/${folder}/`);
 }

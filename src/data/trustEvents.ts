@@ -1,4 +1,4 @@
-// Loads "trust event" photos from the docs/events/ folder at build time.
+// Loads "trust event" photos and videos from docs/events/ at build time.
 //
 // PREFERRED naming:  YYYY-MM-DD_a-short-title.jpg   (.png/.webp/.jpeg too)
 //   e.g.  2026-08-15_manish-kumar-varanasi.jpg  ->  caption "Manish Kumar Varanasi"
@@ -18,10 +18,12 @@ export interface TrustEvent {
   date: string; // ISO YYYY-MM-DD
   title: string;
   src: string; // base-aware public URL
+  mediaType: 'image' | 'video';
   sortKey: string; // date + time, for newest-first ordering
 }
 
-const EXT_RE = /\.(jpg|jpeg|png|webp)$/i;
+const EXT_RE = /\.(jpg|jpeg|png|webp|mp4|m4v|webm)$/i;
+const VIDEO_EXT_RE = /\.(mp4|m4v|webm)$/i;
 // First YYYY-MM-DD found anywhere in the name.
 const DATE_ANYWHERE_RE = /(\d{4})-(\d{2})-(\d{2})/;
 // Optional time right after the date: -HH-MM-SS (WhatsApp export style),
@@ -76,6 +78,7 @@ export const trustEvents: TrustEvent[] = files
       date,
       title: captionFrom(nameNoExt, m.index ?? 0, full.length),
       src: `${base}/events/${filename}`,
+      mediaType: VIDEO_EXT_RE.test(filename) ? 'video' : 'image',
       sortKey: `${date}-${time}`,
     };
   })

@@ -4,6 +4,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 export interface TrustSlide {
   key: string;
   image: string;
+  mediaType?: 'image' | 'video';
   dateLabel: string;
   title: string;
 }
@@ -101,7 +102,21 @@ export default function HeroEventsPanel({
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                 className="absolute inset-0 mx-5 overflow-hidden rounded-2xl shadow-neu-inset"
               >
-                <img src={active.image} alt={active.title} className="h-full w-full object-cover" loading="lazy" />
+                {active.mediaType === 'video' ? (
+                  <video
+                    key={active.image}
+                    src={active.image}
+                    aria-label={active.title}
+                    className="h-full w-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    preload="metadata"
+                  />
+                ) : (
+                  <img src={active.image} alt={active.title} className="h-full w-full object-cover" loading="lazy" />
+                )}
                 <figcaption className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-maroon-deep/90 via-maroon-deep/40 to-transparent p-4">
                   <span className="rounded-full bg-clay/95 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-ink-soft">
                     {active.dateLabel}

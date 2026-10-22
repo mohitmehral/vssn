@@ -53,11 +53,17 @@ function formatFullDate(iso: string): string {
 const trustSlides = trustEvents.slice(0, 6).map((e) => ({
   key: `trust-${e.src}`,
   image: e.src,
+  mediaType: e.mediaType,
   dateLabel: formatFullDate(e.date),
   title: e.title,
 }));
 
-const trustGalleryItems = trustEvents.map((e) => ({ date: e.date, title: e.title, src: e.src }));
+const trustGalleryItems = trustEvents.map((e) => ({
+  date: e.date,
+  title: e.title,
+  src: e.src,
+  mediaType: e.mediaType,
+}));
 
 // Upcoming Sansthan events (today onward, soonest first).
 function dayMonth(iso: string): { day: string; month: string } {
