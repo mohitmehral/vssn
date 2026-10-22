@@ -17,11 +17,43 @@ npm run dev      # local preview
 npm run build    # production build
 ```
 
-## Adding event photos
+## Adding event photos and videos
 
-Drop images into `docs/events/` named with a date, e.g.
-`PHOTO-2026-09-21-16-45-59.jpg` or `2026-08-15_title.jpg`. They appear
-automatically, newest first, after the next deploy.
+The single source of truth for hero and event-gallery media is:
+
+```text
+docs/events/
+```
+
+Administrators can open that folder on GitHub, select **Add file → Upload
+files**, upload the media, and commit it to `main`. GitHub Actions then rebuilds
+and deploys the website automatically—no code change is required.
+
+Supported formats:
+
+- Photos: `.jpg`, `.jpeg`, `.png`, `.webp`
+- Videos: `.mp4`, `.m4v`, `.webm`
+
+Every filename must contain a date in `YYYY-MM-DD` format. Add a time or sequence
+after the date to control the order; the newest date/time appears first:
+
+```text
+2026-10-22-19-49-01_event-title.jpg
+2026-10-22-19-49-02_event-title.mp4
+2026-10-22-19-49-03_another-event.webp
+```
+
+WhatsApp-style filenames such as `PHOTO-2026-09-21-16-45-59.jpg` also work.
+Text after the date/time becomes the displayed title when available.
+
+For reliable, fast video playback, use short H.264 MP4 videos, preferably 720p
+or below and under 10 MB. Hero videos autoplay muted, loop, and play inline;
+gallery videos show playback controls.
+
+To remove an item, delete it from `docs/events/` and commit the deletion. The
+next deployment removes it from the live website as well.
+
+More details are available in [`docs/events/README.md`](docs/events/README.md).
 
 ## Adding member photos
 
