@@ -118,7 +118,6 @@ export default function TrustGallery({ eyebrow, title, lead, noTrustEvents, loca
                           src={e.src}
                           aria-label={e.title}
                           preload="metadata"
-                          muted
                           loop
                           playsInline
                           controls

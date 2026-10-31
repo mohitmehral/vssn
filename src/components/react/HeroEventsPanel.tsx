@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 export interface TrustSlide {
@@ -44,6 +44,8 @@ export default function HeroEventsPanel({
 }: Props) {
   const [index, setIndex] = useState(0);
   const [paused, setPaused] = useState(false);
+  const [videoMuted, setVideoMuted] = useState(true);
+  const videoRef = useRef<HTMLVideoElement>(null);
   const count = trustSlides.length;
 
   useEffect(() => {
@@ -53,6 +55,21 @@ export default function HeroEventsPanel({
   }, [paused, count, intervalMs]);
 
   const active = trustSlides[index];
+
+  useEffect(() => {
+    // Every autoplaying slide must begin muted to satisfy browser policy. Visitors
+    // can then enable its audio with the explicit button below.
+    setVideoMuted(true);
+  }, [active?.key]);
+
+  const toggleVideoAudio = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    const nextMuted = !video.muted;
+    video.muted = nextMuted;
+    setVideoMuted(nextMuted);
+    if (!nextMuted) void video.play();
+  };
 
   return (
     <div className="w-full max-w-full overflow-hidden rounded-neu bg-clay shadow-neu sm:max-w-md">
@@ -103,18 +120,30 @@ export default function HeroEventsPanel({
                 className="absolute inset-0 mx-5 overflow-hidden rounded-2xl shadow-neu-inset"
               >
                 {active.mediaType === 'video' ? (
-                  <video
-                    key={active.image}
-                    src={active.image}
-                    aria-label={active.title}
-                    className="h-full w-full object-cover"
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                    controls
-                    preload="metadata"
-                  />
+                  <>
+                    <video
+                      ref={videoRef}
+                      key={active.image}
+                      src={active.image}
+                      aria-label={active.title}
+                      className="h-full w-full object-cover"
+                      autoPlay
+                      muted={videoMuted}
+                      loop
+                      playsInline
+                      controls
+                      preload="metadata"
+                      onVolumeChange={(event) => setVideoMuted(event.currentTarget.muted)}
+                    />
+                    <button
+                      type="button"
+                      onClick={toggleVideoAudio}
+                      className="absolute right-3 top-3 z-10 rounded-full bg-maroon-deep/90 px-3 py-2 text-xs font-semibold text-clay shadow-lg backdrop-blur-sm"
+                      aria-label={videoMuted ? 'Turn video sound on' : 'Mute video'}
+                    >
+                      {videoMuted ? '🔇 Sound on' : '🔊 Sound on'}
+                    </button>
+                  </>
                 ) : (
                   <img src={active.image} alt={active.title} className="h-full w-full object-cover" loading="lazy" />
                 )}
